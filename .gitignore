@@ -21,4 +21,5 @@
 /doc/*.toc
 /doc/*.bbl
 /doc/*.blg
+/doc/*.synctex.gz
 *~

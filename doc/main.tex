@@ -1,4 +1,4 @@
-\documentclass[headsepline,toc=listof,bibliography=totocnumbered,toc=index,bibliography=openstyle,parskip,footnotes=multiple,numbers=noendperiod,DIV=11]{scrbook}
+\documentclass[headsepline,toc=listof,bibliography=totocnumbered,toc=index,bibliography=oldstyle,parskip,footnotes=multiple,numbers=noendperiod,DIV=11]{scrbook}
 
 %% BEGIN encoding
 \usepackage[utf8]{inputenc}
@@ -164,6 +164,19 @@
             }
         }
     }
+}
+%% END
+
+
+%% BEGIN helper for glossar
+\newcommand{\glsentry}[2]{
+   \textbf{#1}
+   \begingroup
+      \setlength{\parskip}{0pt}
+      \begin{addmargin}[2em]{}
+         #2
+      \end{addmargin}
+   \endgroup
 }
 %% END
 
