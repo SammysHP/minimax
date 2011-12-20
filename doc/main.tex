@@ -1,0 +1,195 @@
+\documentclass[headsepline,toc=listof,bibliography=totocnumbered,toc=index,bibliography=openstyle,parskip,footnotes=multiple,numbers=noendperiod,DIV=11]{scrbook}
+
+%% BEGIN encoding
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+%% END
+
+
+%% BEGIN part layout
+\usepackage{minitoc}
+\renewcommand{\beforeparttoc}{}
+\mtcsetrules{parttoc}{off}
+\mtcsettitle{parttoc}{}
+\doparttoc
+
+\usepackage{scrpage2}
+\renewcommand{\pagemark}{\thepart\ -\ \thepage}
+
+\deftripstyle{PartStyle}[][]{}{}{}{}{}{\setcounter{page}{1}\setcounter{chapter}{0}}
+\deftripstyle{MaintocStyle}[][]{}{}{}{}{}{\thepage}
+\renewcommand*{\partpagestyle}{PartStyle}
+%% END
+
+
+%% BEGIN depth of numbering
+\setcounter{secnumdepth}{4}    % 4 = chapter to paragraph
+%% END
+
+
+%% BEGIN additional useful packages
+\usepackage{xspace}    % preserve spaces after commands
+\usepackage{longtable} % tables over multiple pages
+\usepackage{graphicx}  % include graphics
+%\usepackage{psfrag}    % edit eps-graphics
+%\usepackage{multicol}  % multiple (autobalanced) colums
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%% END
+
+
+%% BEGIN format links and pdf-settings
+\usepackage{hyperref,breakurl}
+\hyperbaseurl{.}
+\hypersetup{
+	colorlinks = true,
+	breaklinks = true,
+	citecolor = black,
+	linkcolor = black,
+	anchorcolor = black,
+	filecolor = black,
+	menucolor = black,
+	urlcolor = black,
+	pdfpagelayout=TwoPageRight,
+	bookmarksdepth=subsection,
+	pdftitle={Projekt Technische Informatik WS 2011/12 - Mini-Projekt: Minimax-Maschine},
+	pdfauthor={Gerion Entrup, Martin Mattheis, Sergej Wildemann, Sven Karsten Greiner},
+	pdfsubject={Projektdokumentation}
+}
+%% END
+
+
+%% BEGIN German translations for separation-strings
+\addto\extrasngerman{%
+    \def\partautorefname{Teil}%
+    \def\chapterautorefname{Kapitel}%
+    \def\sectionautorefname{Abschnitt}%
+    \def\subsectionautorefname{Abschnitt}%
+    \def\subsubsectionautorefname{Abschnitt}%
+    \def\paragraphautorefname{Absatz}%
+    \def\figureautorefname{Abbildung}%
+    \def\appendixautorefname{Anhang}%
+}
+
+\renewcommand*{\theHchapter}{\arabic{part}.\arabic{chapter}}
+%% END
+
+
+%% BEGIN environment for code-listings
+%\usepackage[usenames]{color}
+%\definecolor{BoundaryMarker}{rgb}{1,0,0}
+%\definecolor{Comment}{rgb}{.5,.5,.5}
+%\definecolor{Keyword}{rgb}{0,0,1}
+%\definecolor{Identifier}{rgb}{0,.5,.5}
+%\definecolor{Normal}{rgb}{0,0,0}
+%\definecolor{String}{rgb}{0,.5,0}
+%
+%\usepackage{listings2}         % listings2beta because we use utf8
+%\lstset{
+%    language = java,
+%    basicstyle = \ttfamily\fontsize{9}{11}\selectfont,
+%    backgroundcolor = \color[gray]{0.95},
+%    %frame = single,           % no frame because of bug in listings2beta
+%    %framerule = 1pt,
+%    framexleftmargin = 20pt,
+%    framexrightmargin = 20pt,
+%    framexbottommargin = 5pt,  % apparently no support in listings2beta
+%    framextopmargin = 5pt,     % apparently no support in listings2beta
+%    xleftmargin = 20pt,
+%    xrightmargin = 20pt,
+%    numbers = left,
+%    numberstyle = \tiny,
+%    numbersep = 5pt,
+%    tabsize = 3,
+%    breaklines = true,
+%    captionpos = b,
+%    firstnumber = 1,
+%    stepnumber = 5,
+%    breaklines = true,
+%    identifierstyle=\color{Identifier},
+%    commentstyle = \color{Comment},
+%    keywordstyle = \color{Keyword},
+%    stringstyle = \color{String}
+%}
+%% END
+
+
+%% BEGIN create index
+\makeindex
+%% END
+
+
+%% BEGIN helper for titlepage
+\newcommand{\maketitlepage}{
+    \subject{Projekt Technische Informatik WS 2011/12}
+    \title{Mini-Projekt:\\ Minimax-Maschine}
+    \author{Gerion Entrup\\ Martin Mattheis\\ Sergej Wildemann\\ Sven Karsten Greiner}
+    \date{\today}
+    
+    \maketitle
+}
+%% END
+
+
+%% BEGIN helper for main table of contents
+\newcommand{\makemaintoc}{
+    \cleardoublepage
+    \begingroup
+        \pagestyle{MaintocStyle}
+        \renewcommand*{\chapterpagestyle}{MaintocStyle}
+        
+        \pagenumbering{roman}
+        
+        \setcounter{tocdepth}{0}
+        \tableofcontents
+        
+        \cleardoublepage
+    \endgroup
+    \pagenumbering{arabic}
+}
+%% END
+
+
+%% BEGIN helper for TODO
+\newcommand{\todo}[1]{%
+    \marginpar{%
+        \colorbox{red}{%
+            \parbox{\marginparwidth}{%
+                \color{white}
+                \tiny
+                \raggedright
+                #1
+            }
+        }
+    }
+}
+%% END
+
+
+%% BEGIN no hyphenation for listed words (CSV)
+\hyphenation{}
+%% END
+
+
+%% BEGIN document
+\begin{document}
+
+%% BEGIN title and table of contents
+\maketitlepage
+\makemaintoc
+%% END
+
+
+%% BEGIN content
+%\input{}
+%% END
+
+
+%% BEGIN bibliography
+\bibliography{resources}
+\bibliographystyle{plain}
+%% END
+
+\end{document}
