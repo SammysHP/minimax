@@ -23,3 +23,5 @@
 /doc/*.blg
 /doc/*.synctex.gz
 *~
+*.swp
+
