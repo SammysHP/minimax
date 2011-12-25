@@ -15,13 +15,45 @@ Im Folgenden soll noch die gegebene Basiskonfiguration erläutert werden.
 \subsection{Basiskonfiguration}
 \label{subsection:Pflichtenheft-Istzustand-Simulator-Basiskonfiguration}
 
-\todo{Basiskonfiguration der Minimax"=Maschine erläutern}
+Die Minimax"=Maschine arbeitet vereinfacht ausgedrückt mit einem Datenkreislauf zwischen \emph{Registern} und der \emph{Arithmetic Logic Unit} (ALU), gesteuert durch die \emph{Control Unit} (CU) und \emph{Execution Unit} (EU). In der Basiskonfiguration existieren folgende Register (mit ihren jeweilig zugedachten Aufgaben):
+
+\begin{description}
+    \item[ACCU] \todo{Hat der Accu eine bestimmte Aufgabe?}
+    \item[PC] \emph{Program Counter}, Zähler für Programmablauf
+    \item[MDR] \emph{Memory Data Register}, erhält Daten gesteuert durch den Multiplexer \emph{MDR.Sel} (MDR Selector) entweder aus der ALU oder aus dem Hauptspeicher (HS)
+    \item[IR] \emph{Instruction Register}, ein weiterer Zähler für den Programmablauf
+    \item[MAR] \emph{Memory Address Register}, enthält die Speicheradresse, aus der Daten vom HS gelesen werden sollen
+\end{description}
+
+Jedes Register hat als Eingang mindestens die ALU und besitzt zusätlich einen Steuerungseingang, welcher den Schreibzugriff regelt.
+
+Die ALU wird über den Eingang \emph{ALU.Ctrl} gesteuert und  hat zwei Eingänge, welche mit Multiplexern (gesteuert über \emph{ALUSel.A} und \emph{ALUSel.B}) beschaltet sind. Diese haben folgende Eingänge:
+
+\textbf{A:} 0, 1, ACCU\\
+\textbf{B:} MDR, PC, IR, ACCU \todo{Bedeutung des IR, sign ext. -> Adresse aus Befehl?}
+
+In der ALU sind durch die Basiskonfiguration folgende Operationen implementiert:
+
+\begin{description}
+    \item[ADD] $ALUresult \gets A + B$
+    \item[SUB.B] $ALUresult \gets -A + B$
+    \item[TRANS.A] $ALUresult \gets A$
+    \item[TRANS.B] $ALUresult \gets B$
+\end{description}
+
+\todo{
+\begin{itemize}
+    \item Speicherbreite
+    \item Speicherzugriff
+    \item CU, EU, PC und IR genauer erläutern
+\end{itemize}
+}
 
 
 \section{Projektdateien}
 \label{section:Pflichtenheft-Istzustand-Projektdateien}
 
-Die Aufgaben und Anforderungen wurden als PDF"=Dokument (siehe \cite{aufgabenblatt}) zur Verfügung gestellt. Einige Punkte daraus werden bei Gelegenheit in diesem Dokument aufgeführt und erläutert.
+Die Aufgaben und Anforderungen wurden als PDF"=Dokument (siehe \cite{aufgabenblatt}) zur Verfügung gestellt. Einige Punkte daraus werden bei Gelegenheit in diesem Dokument aufgeführt und erläutert. Weitere Informationen zum Projekt befinden sich in einer weiteren PDF (siehe \cite{projektinfo}).
 
 In Bezug auf die Aufgabe sind außerdem Speicherabbilder für einen einheitlichen Benchmark"=Vergleich gegeben. Das Format kann vom Simulator ohne Anpassungen gelesen werden.
 
