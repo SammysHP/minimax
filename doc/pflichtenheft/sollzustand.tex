@@ -1,7 +1,25 @@
 \chapter{Sollzustand}
 \label{chapter:Pflichtenheft-Sollzustand}
 
-Es soll ein Algorithmus entwickelt und mit der Minimax"=Maschine implementiert werden, welcher die Datenlänge der im Folgenden beschriebenen Pakete zählt.
+Im Hauptspeicher der Minimax"=Machine sind unterschiedliche Datenpakete abgelegt. Jedes Paket enthält einen Kopf von 80 Bits und einen Datenteil mit variabler Länge. Ein Paket fängt mit dem festgelegten Muster \texttt{1110} an. Innerhalb des Kopfes ist die Kanalnummer in zwei nacheinander folgenden Bytes ab dem Bit Nummer 32 vertretet. Zu einem Kanal können mehrere Pakete mit einer eindeutigen Kanalnummer gehören.
 
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+        \multicolumn{1}{c}{0-3} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{32-47} & \multicolumn{1}{c}{48-79} & \multicolumn{1}{c}{} \\
+        \hline
+        1110 & xxx & Kanalnummer & xxx & \hspace{1cm} Datenteil \hspace{1cm} \\
+        \hline
+    \end{tabular}
+\end{center}
 
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        H_0 & \hspace{.3cm} D_0 \hspace*{.3cm} & H_1 & D_1 & H_2 & \hspace{1cm} D_2 \hspace*{1cm} & ...... & H_n & D_n \\
+        \hline
+    \end{tabular}
+\end{center}
 
+Es soll ein Algorithmus entwickelt und mit der Minimax"=Maschine implementiert werden, welcher eine Speichertabelle der Kanalnummern und der Länge (in Bits) des Datenteils aller Pakete des jeweiligen Kanals erstellt. Diese Tabelle soll an einer beliebigen Stelle im Hauptspeicher (außerhalb des Paketfeldbereiches) abgelegt werden.
+
+Beim Aufruf des Algorithmus wird dem Befehl die Länge des Paketfeldes übergeben. Der ACCU beinhaltet bereits die Speicheradresse, an welcher das Paketfeld beginnt.
