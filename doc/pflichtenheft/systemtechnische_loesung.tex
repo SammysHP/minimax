@@ -1,12 +1,50 @@
 \chapter{Systemtechnische Lösung}
 \label{chapter:Pflichtenheft-SystemtechnischeLoesung}
 
+\section{Lösungsansatz}
+\label{section:Pflichtenheft-SystemtechnischeLoesung-Loesungsansatz}
+
+\todo{zwei Ansätze, beide kurz erläutern, sich auf einen festlegen (mit Begründung) und ggf. weiter vertiefen.}
+
+
 \section{Gliederung}
 \label{section:Pflichtenheft-SystemtechnischeLoesung-Gliederung}
+
+\todo{Schilderung des Ablaufs der weiteren Entwicklung nach Auftragserteilung. Arbeitszuweisung, Zeitplan, benötigte Ressourcen etc.}
+
 
 \section{Regulärer Betrieb}
 \label{section:Pflichtenheft-SystemtechnischeLoesung-regulaer}
 
+Nach Aufruf des Alorithmus mit korrekten Startparametern (siehe \autoref{chapter:Pflichtenheft-Sollzustand}), läuft dieser solange, bis er nach Erreichen der gegebenen Länge des Datenblockfelds terminiert. Im Hauptspeicher liegt dann eine Tabelle der Kanalnummern und ihrer jeweiligen Datenlänge vor.
+
+
 \section{Irregulärer Betrieb}
 \label{section:Pflichtenheft-SystemtechnischeLoesung-irregulaer}
 
+Eine Reihe von Ereignissen können zu einem fehlerhaften Verhalten des Algorithmus führen.
+\todo{Terminiert der Algorithmus nicht immer, da er die Länge des Datenfeldes gegeben bekommt?}
+
+\subsection{Fehlerhafte Startparameter}
+\label{subsection:Pflichtenheft-SystemtechnischeLoesung-irregulaer-startparameter}
+
+Es kann sein, dass der übergebene Parameter nicht den korrekten Beginn des Datenfeldes beschreibt. In diesem Fall ist nicht vorherzusehen, wie sich der Algorithmus verhält. Man kann allerdings überprüfen, ob der Beginn mit dem Startcode \texttt{1110} beginnt und diesen Fehlerfall somit weitgehend vermeiden.
+
+Falls die angegebene Länge nicht zu den Daten im Hauptspeicher passt, wird entweder ein Teil der Daten vernachlässigt oder undefinierter Speicherinhalt gelesen und dem Ergebnis hinzugefügt. Dies verfälscht zwar das Ergebnis, lässt den Algorithmus jedoch korrekt terminieren, sofern der Code \texttt{1110} nicht im undefinierten Teil vorkommt (siehe \autoref{subsection:Pflichtenheft-SystemtechnischeLoesung-irregulaer-syntax}).
+
+\subsection{Fehlerhafte Datensyntax}
+\label{subsection:Pflichtenheft-SystemtechnischeLoesung-irregulaer-syntax}
+
+Jedes Paket beginnt mit dem Muster \texttt{1110} (vgl. \autoref{chapter:Pflichtenheft-Sollzustand}). Sollte dieses Muster unerwartet \emph{nicht} als Beginn eines Pakets auftreten, arbeitet der Algorithmus undefiniert weiter, bis er wieder auf ein neues Paket mit korrekter Syntax trifft.
+
+Laut Definition der Daten kann \texttt{1110} jedoch nicht an einer solchen falschen Stelle auftreten. Einzige Möglichkeit wäre demzufolge ein fehlerhafter Einsatz des Algorithmus oder eine Beschädigung des Datenfeldes.
+
+\subsection{Modifikation des Datenfeldes während der Laufzeit}
+\label{subsection:Pflichtenheft-SystemtechnischeLoesung-irregulaer-moddatenfeld}
+
+Findet während der Laufzeit eine Modifikation des Datenfeldes statt, welches bereits abgearbeitet wurde, so ändert dies das Ergebnis nicht. Eine Modifikation des kommenden Teils führt zu einem verfälschtem Ergebnis oder nach \autoref{subsection:Pflichtenheft-SystemtechnischeLoesung-irregulaer-syntax} zu einem undefinierten Zustand.
+
+\subsection{Modifikation des Tabellenteils während der Laufzeit}
+\label{subsection:Pflichtenheft-SystemtechnischeLoesung-irregulaer-modtabelle}
+
+Eine Modifikation der Ergebnistabelle während der Laufzeit führt zu fehlerhaften Datenlängen. \todo{Wenn wir die Daten nicht mit der Kanalnummer adressieren, kann die komplette Datenstruktur zerstört werden.}
