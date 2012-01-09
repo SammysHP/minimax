@@ -24,13 +24,15 @@ Im Folgenden soll noch die gegebene Basiskonfiguration erläutert werden.
 \subsection{Basiskonfiguration}
 \label{subsection:Pflichtenheft-Istzustand-Simulator-Basiskonfiguration}
 
-Die Minimax"=Maschine arbeitet vereinfacht ausgedrückt mit einem Datenkreislauf zwischen \emph{Registern} und der \emph{Arithmetic Logic Unit} (ALU), gesteuert durch die \emph{Control Unit} (CU). In der Basiskonfiguration existieren folgende Register (mit ihren jeweilig zugedachten Aufgaben):
+Die Minimax"=Maschine arbeitet vereinfacht ausgedrückt mit einem Datenkreislauf zwischen \emph{Registern} und der \emph{Arithmetic Logic Unit} (ALU), gesteuert durch die \emph{Control Unit} (CU). Die CU steuert die möglichen Operationen und ist für den Datentransfer zwischen den Registern zuständig, wobei der Opcode des IR berücksichtigt wird.
+
+In der Basiskonfiguration existieren folgende Register (mit ihren jeweilig zugedachten Aufgaben):
 
 \begin{description}
     \item[ACCU] \emph{Accumulator}, Zwischenspeicher
     \item[PC] \emph{Program Counter}, Zähler für Programmablauf
     \item[MDR] \emph{Memory Data Register}, erhält Daten gesteuert durch den Multiplexer \emph{MDR.Sel} (MDR Selector) entweder aus der ALU oder aus dem Hauptspeicher (HS)
-    \item[IR] \emph{Instruction Register}, enthält den aktuellen Befehl (8 Bit) mit Adressteil (24 Bit). Der Befehl wird an die CU weitergeleitet. Der Adressteil wird durch die Sign Extension Unit vorzeichenrichtig auf 32 Bit aufgefüllt (\emph{AT}).
+    \item[IR] \emph{Instruction Register}, enthält den aktuellen Opcode (8 Bit) mit Adressteil (24 Bit). Der Opcode wird an die CU weitergeleitet. Der Adressteil wird durch die Sign Extension Unit vorzeichenrichtig auf 32 Bit erweitert (\emph{AT}).
     \item[MAR] \emph{Memory Address Register}, enthält die Speicheradresse, aus der Daten vom HS gelesen werden sollen
 \end{description}
 
@@ -41,7 +43,7 @@ Die ALU wird über den Eingang \emph{ALU.Ctrl} gesteuert und  hat zwei Eingänge
 \textbf{A:} 0, 1, ACCU\\
 \textbf{B:} MDR, PC, AT, ACCU
 
-In der ALU sind durch die Basiskonfiguration folgende Operationen implementiert, welche durch die oben genannten Multiplexer realisiert sind und über den Eingang ALU.Ctrl gesteuert werden:
+In der ALU sind durch die Basiskonfiguration folgende Operationen implementiert, welche durch die oben genannten Multiplexer realisiert sind und über den Eingang \emph{ALU.Ctrl} gesteuert werden:
 
 \begin{description}
     \item[ADD] $ALUresult \gets A + B$
@@ -50,9 +52,9 @@ In der ALU sind durch die Basiskonfiguration folgende Operationen implementiert,
     \item[TRANS.B] $ALUresult \gets B$
 \end{description}
 
-Der Hauptspeicher wird mit 24 bit adressiert und besitzt eine Busbreite von 32 bit. Die Adresse stammt vom MAR und die Daten liegen am MDR an.
+Das Ergebnis einer Operation \emph{ALUresult} wird auf den Bus gegeben. Außerdem wird bei einer Operation, die das Ergebnis \texttt{NULL} liefert, das Flag \texttt{ALU==0} gesetzt.
 
-\todo{CU, PC genauer erläutern}
+Der Hauptspeicher wird mit 24 bit adressiert und besitzt eine Busbreite von 32 bit. Die Adresse stammt vom MAR und die Daten liegen am MDR an.
 
 
 \section{Projektdateien}
