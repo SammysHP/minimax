@@ -18,10 +18,10 @@ Im Folgenden soll noch die gegebene Basiskonfiguration erläutert werden.
 Die Minimax"=Maschine arbeitet vereinfacht ausgedrückt mit einem Datenkreislauf zwischen \emph{Registern} und der \emph{Arithmetic Logic Unit} (ALU), gesteuert durch die \emph{Control Unit} (CU). In der Basiskonfiguration existieren folgende Register (mit ihren jeweilig zugedachten Aufgaben):
 
 \begin{description}
-    \item[ACCU] \todo{Hat der Accu eine bestimmte Aufgabe?}
+    \item[ACCU] \emph{Accumulator}, Zwischenspeicher
     \item[PC] \emph{Program Counter}, Zähler für Programmablauf
     \item[MDR] \emph{Memory Data Register}, erhält Daten gesteuert durch den Multiplexer \emph{MDR.Sel} (MDR Selector) entweder aus der ALU oder aus dem Hauptspeicher (HS)
-    \item[IR] \emph{Instruction Register}, ein weiterer Zähler für den Programmablauf
+    \item[IR] \emph{Instruction Register}, enthält den aktuellen Befehl
     \item[MAR] \emph{Memory Address Register}, enthält die Speicheradresse, aus der Daten vom HS gelesen werden sollen
 \end{description}
 
@@ -30,7 +30,7 @@ Jedes Register hat als Eingang mindestens die ALU und besitzt zusätlich einen S
 Die ALU wird über den Eingang \emph{ALU.Ctrl} gesteuert und  hat zwei Eingänge, welche mit Multiplexern (gesteuert über \emph{ALUSel.A} und \emph{ALUSel.B}) beschaltet sind. Diese haben folgende Eingänge:
 
 \textbf{A:} 0, 1, ACCU\\
-\textbf{B:} MDR, PC, IR, ACCU \todo{Bedeutung des IR, sign ext. -> Adresse aus Befehl?}
+\textbf{B:} MDR, PC, IR, ACCU \todo{Bedeutung des IR: speichert Befehl und Adresse, sign ext. -> Adresse aus Befehl auffüllen auf 32Bit oderso}
 
 In der ALU sind durch die Basiskonfiguration folgende Operationen implementiert:
 
