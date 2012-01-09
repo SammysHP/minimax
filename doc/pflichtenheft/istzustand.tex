@@ -21,7 +21,7 @@ Die Minimax"=Maschine arbeitet vereinfacht ausgedrückt mit einem Datenkreislauf
     \item[ACCU] \emph{Accumulator}, Zwischenspeicher
     \item[PC] \emph{Program Counter}, Zähler für Programmablauf
     \item[MDR] \emph{Memory Data Register}, erhält Daten gesteuert durch den Multiplexer \emph{MDR.Sel} (MDR Selector) entweder aus der ALU oder aus dem Hauptspeicher (HS)
-    \item[IR] \emph{Instruction Register}, enthält den aktuellen Befehl (8 Bit) mit Adressteil (24 Bit). Der Befehl wird an die CU weitergeleitet. Der Adressteil wird durch die Sign Extension Unit vorzeichenrichtig auf 32 Bit aufgefüllt.\todo{verschönern}
+    \item[IR] \emph{Instruction Register}, enthält den aktuellen Befehl (8 Bit) mit Adressteil \emph{AT} (24 Bit). Der Befehl wird an die CU weitergeleitet. Der Adressteil wird durch die Sign Extension Unit vorzeichenrichtig auf 32 Bit aufgefüllt.\todo{verschönern}
     \item[MAR] \emph{Memory Address Register}, enthält die Speicheradresse, aus der Daten vom HS gelesen werden sollen
 \end{description}
 
@@ -30,7 +30,7 @@ Jedes Register hat als Eingang mindestens die ALU und besitzt zusätlich einen S
 Die ALU wird über den Eingang \emph{ALU.Ctrl} gesteuert und  hat zwei Eingänge, welche mit Multiplexern (gesteuert über \emph{ALUSel.A} und \emph{ALUSel.B}) beschaltet sind. Diese haben folgende Eingänge:
 
 \textbf{A:} 0, 1, ACCU\\
-\textbf{B:} MDR, PC, IR, ACCU 
+\textbf{B:} MDR, PC, AT, ACCU 
 
 In der ALU sind durch die Basiskonfiguration folgende Operationen implementiert:
 
@@ -45,7 +45,7 @@ In der ALU sind durch die Basiskonfiguration folgende Operationen implementiert:
 \begin{itemize}
     \item Speicherbreite
     \item Speicherzugriff
-    \item CU, PC und IR genauer erläutern
+    \item CU, PC genauer erläutern
 \end{itemize}
 }
 
