@@ -30,7 +30,7 @@ Jedes Register hat als Eingang mindestens die ALU und besitzt zusätlich einen S
 Die ALU wird über den Eingang \emph{ALU.Ctrl} gesteuert und  hat zwei Eingänge, welche mit Multiplexern (gesteuert über \emph{ALUSel.A} und \emph{ALUSel.B}) beschaltet sind. Diese haben folgende Eingänge:
 
 \textbf{A:} 0, 1, ACCU\\
-\textbf{B:} MDR, PC, IR, ACCU \todo{Bedeutung des IR, sign ext. -> Adresse aus Befehl?}
+\textbf{B:} MDR, PC, IR, ACCU \todo{Bedeutung des IR: speichert Befehl und Adresse, sign ext. -> Adresse aus Befehl auffüllen auf 32Bit oderso}
 
 In der ALU sind durch die Basiskonfiguration folgende Operationen implementiert:
 
