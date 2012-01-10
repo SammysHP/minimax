@@ -39,9 +39,16 @@ Nachteile:
 
 Wir haben uns wegen der sehr umständlichen Speicheroperationen gegen den ersten Ansatz entschieden.
 
-Da man nur 32 bits auf einmal auslesen kann, muss man mit der Alu die Operation "`shift"' hinzufügen. Der Offset wird als die Länge des Datenteils festgelegt.\\
-Der Algorithmus sieht dann so aus:
-\todo{flussdiagramm}
+Da man nur 32 bits auf einmal auslesen kann, muss man mit der Alu die Operation "`shift"' hinzufügen. Der Offset wird als die Länge des Datenteils festgelegt.
+
+Der Algorithmus ist schematisch in \autoref{figure:Pflichtenheft-SystemtechnischeLoesung-Loesungsansatz-Algorithmus} dargestellt.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\textwidth, height=0.7\textwidth, draft]{pflichtenheft/res/algorithmus.pdf}
+    \caption{Schematischer Aufbau des Algorithmus}
+    \label{figure:Pflichtenheft-SystemtechnischeLoesung-Loesungsansatz-Algorithmus}
+\end{figure}
 
 \todo{zwei Ansätze, beide kurz erläutern, sich auf einen festlegen (mit Begründung) und ggf. weiter vertiefen.}
 
