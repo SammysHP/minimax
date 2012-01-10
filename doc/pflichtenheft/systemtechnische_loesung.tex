@@ -4,7 +4,7 @@
 \section{Lösungsansatz}
 \label{section:Pflichtenheft-SystemtechnischeLoesung-Loesungsansatz}
 
-Die erste Schritt ist zu klären, wie die Tabelle im Speicher gespeichert werden soll. Dabei gilt zu beachten, dass unbegrenzt Speicher vorhanden ist und keine Bewertung hinsichtlich des Speichers getroffen wird.
+Der erste Schritt ist zu klären, wie die Tabelle im Speicher gespeichert werden soll. Dabei gilt zu beachten, dass unbegrenzt Speicher vorhanden ist und keine Bewertung hinsichtlich des Speichers getroffen wird.
 
 \subsection{Ansatz 1}
 Man speichert die Kanalnummer in Register x und die herausgefundene Anzahl Datenbits, die zu dieser Kanalnummer gehören, in Register x+1.
@@ -22,19 +22,19 @@ Nachteile:
 \end{itemize}
 
 \subsection{Ansatz 2}
-Man speichert in dem Register mit der Kanalnummer (plus einem Offset) die herausgefundene Anzahl Datenbits, die zu dieser Kanalnummer gehören.
+Man speichert in der Speicherzelle mit der Kanalnummer (plus einem Offset, damit das Datenfeld nicht überschrieben wird) als Adresse die herausgefundene Anzahl Datenbits, die zu dieser Kanalnummer gehören.
 
 Vorteile:
 \begin{itemize}
-    \item Sehr schnelle Berechnung des Registers, in dem die gewünschte Anzahl steht.
+    \item Sehr schnelle Bestimmung der Speicheradresse, an der die gewünschte Anzahl steht.
     \item Keine Sortierung notwendig.
     \item Reduzierung des Nettospeicherverbrauchs.
 \end{itemize}
 
 Nachteile:
 \begin{itemize}
-    \item Hoher Bruttospeicherverbrauch, da viele mögliche Nummer unnutzbaren Speicher darstellen.
-    \item Schlecht "`per Auge"' ablesbar, weil man die Registernummer berechnen muss.
+    \item Hoher Bruttospeicherverbrauch, da viele mögliche Nummern unnutzbaren Speicher darstellen.
+    \item Schlecht "`per Auge"' ablesbar, weil man die Adresse berechnen muss.
 \end{itemize}
 
 Wir haben uns wegen der sehr umständlichen Speicheroperationen gegen den ersten Ansatz entschieden.
