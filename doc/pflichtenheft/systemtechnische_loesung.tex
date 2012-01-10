@@ -50,16 +50,34 @@ Der Algorithmus ist schematisch in \autoref{figure:Pflichtenheft-Systemtechnisch
     \label{figure:Pflichtenheft-SystemtechnischeLoesung-Loesungsansatz-Algorithmus}
 \end{figure}
 
-\todo{zwei Ansätze, beide kurz erläutern, sich auf einen festlegen (mit Begründung) und ggf. weiter vertiefen.}
-
 
 \section{Gliederung}
 \label{section:Pflichtenheft-SystemtechnischeLoesung-Gliederung}
 
-\todo{Schilderung des Ablaufs der weiteren Entwicklung nach Auftragserteilung. Arbeitszuweisung, Zeitplan, benötigte Ressourcen etc.}
+Nach Auftragserteilung wird die Abarbeitung des Projekts in folgenden Schritten stattfinden:
+
+\subsection{Algorithmus ausarbeiten}
+Der Algorithmus wird auf Sprachlevel der Minimax"=Maschine ausgearbeitet und in RT"=Notation verfasst. Dieser Aufgabe sind \emph{Gerion Entrup} und \emph{Sergej Wildemann} zugewiesen.
+
+\subsection{Erweiterung der Minimax"=Maschine}
+Die erforderlichen Erweiterungen der Minimax"=Maschine werden vorgenommen. Dazu werden notwendige Konfigurationsdateien erstellt und dokumentiert. Diese Dateien sind im Anschluss mit Minimalbeispielen zu testen. Auch dieser Abschnitt wird von \emph{Gerion Entrup} und \emph{Sergej Wildemann} übernommen.
+
+\subsection{Steuertabelle erstellen}
+Der Pseudocode in RT"=Notation wird in Maschinencode für die Minimax"=Maschine umgewandelt. Im Anschluss muss dieser ausgiebig u.\,a. mit den gegebenen Benchmarkdateien getestet und ggf. überarbeitet werden. Dieser Teil wird von \emph{Martin Matthaei} durchgeführt.
+
+\subsection{Dokumentation erstellen}
+Der Arbeitsfortschritt wird in einer Dokumentation (\autoref{part:Dokumentation}) protokolliert. Ebenfalls enthalten sind Kommentare und abschließende Bewertung. Diese Aufgabe wird parallel zu den anderen Schritten von \emph{Sven Karsten Greiner} durchgeführt und abschließend überprüft.
+
+\subsection{Fertigstellung}
+Der Auftrag ist bis zum \emph{24.01.2012 um 11 Uhr} zu erfüllen (siehe \autoref{subsection:Pflichtenheft-Einfuehrung-Projektumfeld-Ablauf}), eine vorzeitige Abgabe ist jedoch möglich. Sollten unerwartet Verzögerungen eintreten, ist der Auftraggeber umgehend zu informieren. Sollte es zu verstärktem Personalausfall kommen, muss der o.\,g. Ablauf abgeändert werden. Es ist jedoch nicht auszuschließen, dass ggf. einige Teile nicht fertiggestellt werden können. In diesem Fall ist es notwendig, in Zusammenarbeit mit dem Auftraggeber nach Alternativen zu suchen.
+
+\subsection{Benötigte Ressourcen}
+Für dieses Projekt werden keine besonderen Ressourcen in Anspruch genommen. Der Arbeitsaufwand wird mit 16 Stunden pro Person geschätzt und wird im Rahmen des Informatik"=Studiums an der Leibniz Universität Hannover abgeleistet.
+
+Zum Personal siehe auch \autoref{subsection:Pflichtenheft-Einfuehrung-Projektumfeld-Personal}.
 
 
-\section[Regulärer Betrieb]{Regulärer Betrieb\footnote{Die folgenden beiden Abschnitte beziehen sich auf den eben gewählten Ansatz}}
+\section[Regulärer Betrieb]{Regulärer Betrieb\footnote{Die folgenden beiden Abschnitte beziehen sich auf den zuvor gewählten Ansatz}}
 \label{section:Pflichtenheft-SystemtechnischeLoesung-regulaer}
 
 Nach Aufruf des Alorithmus mit korrekten Startparametern (siehe \autoref{chapter:Pflichtenheft-Sollzustand}), läuft dieser solange, bis er nach Erreichen der gegebenen Länge des Datenfelds terminiert. Im Hauptspeicher liegt dann eine Tabelle der Kanalnummern und ihrer jeweiligen Datenlänge vor.
