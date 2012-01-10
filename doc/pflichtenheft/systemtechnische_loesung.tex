@@ -39,9 +39,13 @@ Nachteile:
 
 Wir haben uns wegen der sehr umständlichen Speicheroperationen gegen den ersten Ansatz entschieden.
 
-Da man nur 32 bits auf einmal auslesen kann, muss man mit der Alu die Operation "`shift"' hinzufügen. Der Offset wird als die Länge des Datenteils festgelegt.
+Im Allgemeinen arbeitet der Algorithmus wie folgt: Die Daten können aus dem Speicher nur blockweise gelesen werden. Deshalb wird in dem Register "`Blockspeicher"' immer der aktuelle Block gespeichert und in ein weiteres Register (Zwischenspeicher) geshiftet, in dem man die Daten bitweise prüfen kann.
 
-Der Algorithmus ist schematisch in \autoref{figure:Pflichtenheft-SystemtechnischeLoesung-Loesungsansatz-Algorithmus} dargestellt.
+Die Daten werden dann in einer Schleife in "`Blockspeicher"' eingelesen und durch eine weitere Schleife bitweise verarbeitet. In dieser zweiten Schleife wird entweder, wenn man an den Anfang eines Headers angekommen ist, die neue Kanalnummer gespeichert und an den Anfang des Datenteils gesprungen oder der Speicherblock inkrementiert, der die Anzahl Datenbits enthält.
+
+Die Tabelle selber wird, wie bereits angedeutet, so gespeichert, dass die Speicheradresse äquivalent zur Kanalnummer ist (allerdings einen Offset hat). Der Offset entspricht dabei genau der Speicheradresse, die auf die erste freie Speicherzelle nach dem Datenteil zeigt.
+
+Die Implementierung ist abstrahiert als Flussdiagramm visualisiert (siehe \autoref{figure:Pflichtenheft-SystemtechnischeLoesung-Loesungsansatz-Algorithmus}).
 
 \begin{figure}[htb]
     \centering
@@ -49,6 +53,22 @@ Der Algorithmus ist schematisch in \autoref{figure:Pflichtenheft-Systemtechnisch
     \caption{Schematischer Aufbau des Algorithmus}
     \label{figure:Pflichtenheft-SystemtechnischeLoesung-Loesungsansatz-Algorithmus}
 \end{figure}
+
+\clearpage
+
+Es folgen noch einige Erläuterungen zu einzelnen Funktionen im Flussdiagramm.
+
+\begin{description}
+    \item[{Nächsten Speicherblock laden}] 32 Bit aus dem Speicher auslesen und in Blockspeicher speichern.
+    
+    \item[{ein Bit weitergehen}] Zwischenspeicher shiften und aus dem Blockspeicher ein Bit nachladen.
+    
+    \item[{jump 32 Bit}] Lade nächsten Block in Blockspeicher und shifte dort genauso viele Bits, wie man im aktuellen Speicherblock geshiftet hat. Im Zwischenspeicher befinden sich dann 32 neue Bits.
+    
+    \item[{KANALNR speichern}] Zwischenspeicher sechszehnmal shiften und die geshifteten Bits im Register "KANALNR" speichern
+    
+    \item[{M[TABELLENANFANG + KANALNR] = M[TABELLENANFANG + KANALNR] + 1}] Inkrementiert den Inhalt der Speicherzelle, in dem die Anzahl der Datenbits für die aktuelle Kanalnummer gespeichert wird.
+\end{description}
 
 
 \section{Gliederung}
