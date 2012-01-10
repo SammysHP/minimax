@@ -37,6 +37,21 @@ Nachteile:
     \item Schlecht "`per Auge"' ablesbar, weil man die Adresse berechnen muss.
 \end{itemize}
 
+Nach dem Beispiel aus \autoref{chapter:Pflichtenheft-Sollzustand} ergäbe sich folgende Tabelle:
+
+\begin{center}
+    \begin{tabular}{|r|r|l|}
+        \hline
+        Kanalnr. & Anzahl & Speicheradresse \\
+        \hline
+        \hline
+        243 & 9 & Offset + 0xF3 \\
+        \hline
+        3727 & 4 & Offset + 0xE8F \\
+        \hline
+    \end{tabular}
+\end{center}
+
 Wir haben uns wegen der sehr umständlichen Speicheroperationen gegen den ersten Ansatz entschieden.
 
 Im Allgemeinen arbeitet der Algorithmus wie folgt: Die Daten können aus dem Speicher nur blockweise gelesen werden. Deshalb wird in dem Register "`Blockspeicher"' immer der aktuelle Block gespeichert und in ein weiteres Register (Zwischenspeicher) geshiftet, in dem man die Daten bitweise prüfen kann.

@@ -23,3 +23,29 @@ Im Hauptspeicher der Minimax"=Machine sind unterschiedliche Datenpakete abgelegt
 Es soll ein Algorithmus entwickelt und mit der Minimax"=Maschine implementiert werden, welcher eine Speichertabelle der Kanalnummern und der Länge (in Bits) des Datenteils aller Pakete des jeweiligen Kanals erstellt. Diese Tabelle soll an einer beliebigen Stelle im Hauptspeicher (außerhalb des Paketfeldbereiches) abgelegt werden.
 
 Beim Aufruf des Algorithmus wird dem Befehl die Länge des Paketfeldes übergeben. Der ACCU beinhaltet bereits die Speicheradresse, an welcher das Paketfeld beginnt.
+
+\pagebreak
+
+Wenn z.\,B. die Datentabelle so aussieht:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \multicolumn{5}{c|}{1. Paket} & \multicolumn{5}{c|}{2. Paket} & \multicolumn{5}{c}{3. Paket}\\ \hline
+        1110 & x & $243_{10}$ & x & 1001 & 1110 & x & $243_{10}$ & x & 10110 & 1110 & x & $3727_{10}$ & x & 1001 \\ \hline
+    \end{tabular}
+\end{center}
+
+ergibt sich daraus folgende Tabelle:
+
+\begin{center}
+    \begin{tabular}{|r|r|l|}
+        \hline
+        Kanalnr. & Anzahl \\
+        \hline
+        \hline
+        243 & 9 \\
+        \hline
+        3727 & 4 \\
+        \hline
+    \end{tabular}
+\end{center}
