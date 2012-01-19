@@ -1,0 +1,70 @@
+\chapter{Benchmark und Bewertung}
+\label{chapter:Dokumentation-BenchmarkBewertung}
+
+\section{Berechnung}
+\label{section:Dokumentation-BenchmarkBewertung-Berechnung}
+
+Für die Berechnung der Laufzeit und für die Bewertung des Algorithmus gelten folgende Vorschriften:
+
+\subsection{Variablen}
+\label{subsection:Dokumentation-BenchmarkBewertung-Berechnung-Variablen}
+
+\begin{description}
+    \item[reg] Anzahl der ergänzten Minimaxregister
+    \item[se] Anzahl der ergänzten Sign"=Extension"=Units (0 oder 1)
+    \item[const] Anzahl der ergänzten Konstanten (eine "`0"' und eine "`1"' frei)
+    \item[alu\_add] Penaltysumme für alle ergänzten ALU"=Befehle
+    \item[alu\_use] Penaltysumme der \emph{verwendeten} ALU"=Befehle im Programm
+\end{description}
+
+\begin{center}
+    \begin{tabular}{|c||c|c|c|c|c|c|c|}
+        \hline
+        extra ALU"=Op. & SUB1 & INC/DEC & S.L, S.R & AND, OR, NOT & XOR & DIV & Custom \\ 
+        \hline
+        Penalty (1..20) & 1 & 4 & 5 & 6 & 8 & 10 & bis zu 20 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Variablenwerte}
+\label{subsubsection:Dokumentation-BenchmarkBewertung-Berechnung-Variablen-Variablenwerte}
+
+\todo{Werte bestimmen, einsetzen und berechnen}
+
+Im Folgenden sind die Werte für den verwendeten Algoritmus angegeben:
+
+\begin{eqnarray*}
+    reg = x \\
+    se = x \\
+    const = x \\
+    alu\_add = x \\
+    alu\_use = x
+\end{eqnarray*}
+
+\subsection{Laufzeit}
+\label{subsection:Dokumentation-BenchmarkBewertung-Berechnung-Laufzeit}
+
+Die Laufzeit berechnet sich nach folgender Formel:
+
+\begin{align*}
+    t_{bewertet} &= t_{bench} \cdot (1 + 0.1 \cdot reg + 0.15 \cdot se + 0.015 \cdot alu\_add + 0.05 \cdot const) \\
+                 &= 3000 \cdot (1 + 0.1 \cdot 2 + 0.15 \cdot 0 + 0.015 \cdot 5 + 0.05 \cdot 1) \\
+                 &= \mbox{zu viel}
+\end{align*}
+
+\subsection{Länge}
+\label{subsection:Dokumentation-BenchmarkBewertung-Berechnung-Laenge}
+
+Die Länge berechnet sich nach folgender Formel:
+
+\begin{align*}
+    n_{bewertet} &= n_{Algorithmus} + 5 \cdot reg + 10 \cdot se + 3 \cdot alu_use + 5 \cdot const \\
+                 &= 30 + 5 \cdot 2 + 10 \cdot 0 + 3 \cdot 5 + 5 \cdot 1 \\
+                 &= \mbox{zu viel}
+\end{align*}
+
+\section{Abschließende Bewertung}
+\label{section:Dokumentation-BenchmarkBewertung-Bewertung}
+
+Algorithmus ist für normale Anwendung geeignet bla blubb... \todo{Abschließende Bewertung}
