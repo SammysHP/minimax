@@ -34,13 +34,13 @@ Für die Berechnung der Laufzeit und für die Bewertung des Algorithmus gelten f
 
 Im Folgenden sind die Werte für den verwendeten Algoritmus angegeben:
 
-\begin{eqnarray*}
-    reg = x \\
-    se = x \\
-    const = x \\
-    alu\_add = x \\
-    alu\_use = x
-\end{eqnarray*}
+\begin{align*}
+    reg      &= 7 \\
+    se       &= 0 \\
+    const    &= 6 \\
+    alu\_add &= 10 + 10 = 20 \\
+    alu\_use &= 1 + 1 + 10 + 10 + 1 = 23
+\end{align*}
 
 \subsection{Laufzeit}
 \label{subsection:Dokumentation-BenchmarkBewertung-Berechnung-Laufzeit}
@@ -49,9 +49,11 @@ Die Laufzeit berechnet sich nach folgender Formel:
 
 \begin{align*}
     t_{bewertet} &= t_{bench} \cdot (1 + 0.1 \cdot reg + 0.15 \cdot se + 0.015 \cdot alu\_add + 0.05 \cdot const) \\
-                 &= 3000 \cdot (1 + 0.1 \cdot 2 + 0.15 \cdot 0 + 0.015 \cdot 5 + 0.05 \cdot 1) \\
-                 &= \mbox{zu viel}
+                 &= t_{bench} \cdot (1 + 0.1 \cdot 7 + 0.15 \cdot 0 + 0.015 \cdot 20 + 0.05 \cdot 6) \\
+                 &= t_{bench} \cdot 2.3
 \end{align*}
+
+Zur Bestimmung von $t_{bench}$ wurden 3 Speicherabbilder zur Verfügung gestellt. \todo{ausformulieren, berechnen}
 
 \subsection{Länge}
 \label{subsection:Dokumentation-BenchmarkBewertung-Berechnung-Laenge}
@@ -59,9 +61,9 @@ Die Laufzeit berechnet sich nach folgender Formel:
 Die Länge berechnet sich nach folgender Formel:
 
 \begin{align*}
-    n_{bewertet} &= n_{Algorithmus} + 5 \cdot reg + 10 \cdot se + 3 \cdot alu_use + 5 \cdot const \\
-                 &= 30 + 5 \cdot 2 + 10 \cdot 0 + 3 \cdot 5 + 5 \cdot 1 \\
-                 &= \mbox{zu viel}
+    n_{bewertet} &= n_{Algorithmus} + 5 \cdot reg + 10 \cdot se + 3 \cdot alu\_use + 5 \cdot const \\
+                 &= 100 + 5 \cdot 7 + 10 \cdot 0 + 3 \cdot 23 + 5 \cdot 6 \\
+                 &= 234
 \end{align*}
 
 \section{Abschließende Bewertung}
