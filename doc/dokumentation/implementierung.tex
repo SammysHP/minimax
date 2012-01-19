@@ -4,5 +4,42 @@
 \section{Hardwareerweiterung}
 \label{section:Dokumentation-Implementierung-Hardwareerweiterung}
 
+\subsection{Register}
+\label{subsection:Dokumentation-Implementierung-Hardwareerweiterung-Register}
+
+\begin{description}
+    \item[BUFFER\_ONE] immer voller Buffer, bitgenau
+    \item[BUFFER\_TWO] füllt \texttt{BUFFER\_ONE}, wird mit Speicherzellen gefüllt
+    \item[FILLED] Füllstand von \texttt{BUFFER\_TWO}
+    \item[FILLEDTMP] Zwischenspeicher
+    \item[ZAHLER] aktuelle Adresse vom Paketfeld
+    \item[TABELLENANFANG]
+    \item[KANALNR]
+\end{description}
+
+\subsection{ALU"=Operationen}
+\label{subsection:Dokumentation-Implementierung-Hardwareerweiterung-AluOps}
+
+\todo{ggf. erweitern}
+
+\begin{description}
+    \item[MUL] $ALUresult \gets A \cdot B$
+    \item[DIV] $ALUresult \gets A / B$
+\end{description}
+
+\subsection{Konstanten}
+\label{subsection:Dokumentation-Implementierung-Hardwareerweiterung-Konstanten}
+
+\begin{itemize}
+    \item $(e0000000)_{16}$
+    \item $(2^{31})_{10}$
+    \item $(2^{28})_{10}$
+    \item $(2^{16})_{10}$
+    \item $(2^5)_{10}$
+    \item $(2)_{10}$
+\end{itemize}
+
 \section{Steuertabelle}
 \label{section:Dokumentation-Implementierung-Steuertabelle}
+
+Siehe \autoref{chapter:Anhang-RtNotation}. Noch erweitern, Kommentar schreiben, ein bisschen erklären usw.
