@@ -37,21 +37,24 @@
 \usepackage{multicol}  % multiple (autobalanced) colums
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{color}
 %% END
 
 
 %% BEGIN format links and pdf-settings
 \usepackage{hyperref,breakurl}
 \hyperbaseurl{.}
+\definecolor{linkcolor}{rgb}{0,0,1}
+% \definecolor{linkcolor}{rgb}{0,0,0} %print-setup
 \hypersetup{
 	colorlinks = true,
 	breaklinks = true,
-	citecolor = black,
-	linkcolor = black,
-	anchorcolor = black,
-	filecolor = black,
-	menucolor = black,
-	urlcolor = black,
+	citecolor = linkcolor,
+	linkcolor = linkcolor,
+	anchorcolor = linkcolor,
+	filecolor = linkcolor,
+	menucolor = linkcolor,
+	urlcolor = linkcolor,
 	pdfpagelayout=TwoPageRight,
 	bookmarksdepth=subsection,
 	pdftitle={Projekt Technische Informatik WS 2011/12 - Mini-Projekt: Minimax-Maschine},
@@ -78,7 +81,6 @@
 
 
 %% BEGIN environment for code-listings
-%\usepackage[usenames]{color}
 %\definecolor{BoundaryMarker}{rgb}{1,0,0}
 %\definecolor{Comment}{rgb}{.5,.5,.5}
 %\definecolor{Keyword}{rgb}{0,0,1}
