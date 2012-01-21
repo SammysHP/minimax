@@ -45,7 +45,7 @@ Im Folgenden sind die Werte für den verwendeten Algoritmus angegeben:
 \subsection{Laufzeit}
 \label{subsection:Dokumentation-BenchmarkBewertung-Berechnung-Laufzeit}
 
-Die Laufzeit berechnet sich nach folgender Formel:
+Die Laufzeit des Algorithmus wird in Minimaxtakten gezählt und berechnet sich nach folgender Formel:
 
 \begin{align*}
     t_{bewertet} &= t_{bench} \cdot (1 + 0.1 \cdot reg + 0.15 \cdot se + 0.015 \cdot alu\_add + 0.05 \cdot const) \\
@@ -53,12 +53,35 @@ Die Laufzeit berechnet sich nach folgender Formel:
                  &= t_{bench} \cdot 2.3
 \end{align*}
 
-Zur Bestimmung von $t_{bench}$ wurden 3 Speicherabbilder zur Verfügung gestellt. \todo{ausformulieren, berechnen}
+Zur Bestimmung von $t_{bench}$ wurden 3 Speicherabbilder mit jeweils 1120 Bytes zur Verfügung gestellt:
+
+\begin{enumerate}
+    \item Alle Pakete haben eine Länge 80 Bits (Pakete ohne Daten)
+    \item Durchschnittliche Datenteillänge von 80 Bits
+    \item Durchschnittliche Datenteillänge von 144 Bits
+\end{enumerate}
+
+Nach Simulation des Algorithmus mit allen drei Beispielen wurden folgende Ergebnisse festgestellt: \todo{berechnen}
+
+\begin{center}
+    \begin{tabular}{|l|l|l|}
+        \hline
+        Speicherabbild & Minimaxtakte & $t_{bewertet}$ \\
+        \hline
+        \hline
+        1 & 2000 & 4000 \\
+        \hline
+        2 & 2000 & 4000 \\
+        \hline
+        3 & 2000 & 4000 \\
+        \hline
+    \end{tabular}
+\end{center}
 
 \subsection{Länge}
 \label{subsection:Dokumentation-BenchmarkBewertung-Berechnung-Laenge}
 
-Die Länge berechnet sich nach folgender Formel:
+Die Länge des Algorithmus berechnet sich nach folgender Formel:
 
 \begin{align*}
     n_{bewertet} &= n_{Algorithmus} + 5 \cdot reg + 10 \cdot se + 3 \cdot alu\_use + 5 \cdot const \\
@@ -69,4 +92,4 @@ Die Länge berechnet sich nach folgender Formel:
 \section{Abschließende Bewertung}
 \label{section:Dokumentation-BenchmarkBewertung-Bewertung}
 
-Algorithmus ist für normale Anwendung geeignet bla blubb... \todo{Abschließende Bewertung}
+Dieser Algorithmus überzeugt hauptsächlich durch den einfachen Zugriff auf das Ergebnis. Da der Hauptspeicher unbegrenzt ist, stellt der große Bruttospeicherbedarf keinen allzu großen Nachteil dar. Die Laufzeit des Algorithmus ist der Aufgabe angemessen, kann mit einer definierteren Struktur der Daten aber noch optimiert werden. Die umfangreichen Hardwareerweiterungen erfordern eine ausreichend hohe Auflagengröße, da nicht vollständig auf Standardkomponenten zurückgegriffen werden kann. Für kleinere Stückzahlen findet sich eventuell eine umfangreichere Basismaschine, wodurch die Kosten eventuell reduziert werden können.
