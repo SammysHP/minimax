@@ -25,18 +25,21 @@
 \begin{description}
     \item[MUL] $ALUresult \gets A \cdot B$
     \item[DIV.A] $ALUresult \gets B / A$
+    \item[AND] $ALUresult \gets A & B$
 \end{description}
 
 \subsection{Konstanten}
 \label{subsection:Dokumentation-Implementierung-Hardwareerweiterung-Konstanten}
 
 \begin{itemize}
-    \item $(e0000000)_{16}$
+    \item $(14)_{10}$
     \item $(2^{31})_{10}$
     \item $(2^{28})_{10}$
     \item $(2^{16})_{10}$
     \item $(2^5)_{10}$
     \item $(2)_{10}$
+    \item $(16)_{10}$
+    \item $(65535)_{10}$
 \end{itemize}
 
 \subsection{Konfigurationsdatei}
@@ -71,7 +74,7 @@ Die Erweiterungskonfiguration befindet sich in \autoref{chapter:Anhang-Konfigura
     Quelle               & Code & Eingang \\
     \hline
     ACCU                 & 0000 &  0 \\
-    0                    & 0001 &  1 \\
+    PC                   & 0001 &  1 \\
     1                    & 0010 &  2 \\
     (32)_{10}            & 0011 &  3 \\
     (2^{16})_{10}        & 0100 &  4 \\
@@ -88,7 +91,7 @@ Die Erweiterungskonfiguration befindet sich in \autoref{chapter:Anhang-Konfigura
 \textbf{ALUSel.B:}
 
 \begin{tabular}{lcc}
-    Quelle       & Code & Eingang \\
+    Quelle        & Code & Eingang \\
     \hline
     ACCU          & 0000 &  0 \\
     MDR           & 0001 &  1 \\

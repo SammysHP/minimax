@@ -37,9 +37,9 @@ Im Folgenden sind die Werte für den verwendeten Algoritmus angegeben:
 \begin{align*}
     reg      &= 7 \\
     se       &= 0 \\
-    const    &= 6 \\
-    alu\_add &= 10 + 10 = 20 \\
-    alu\_use &= 1 + 1 + 10 + 10 + 1 = 23
+    const    &= 8 \\
+    alu\_add &= 10 + 10 + 6 = 26 \\
+    alu\_use &= 10 + 10 + 6 = 26
 \end{align*}
 
 \subsection{Laufzeit}
@@ -49,8 +49,8 @@ Die Laufzeit des Algorithmus wird in Minimaxtakten gezählt und berechnet sich n
 
 \begin{align*}
     t_{bewertet} &= t_{bench} \cdot (1 + 0.1 \cdot reg + 0.15 \cdot se + 0.015 \cdot alu\_add + 0.05 \cdot const) \\
-                 &= t_{bench} \cdot (1 + 0.1 \cdot 7 + 0.15 \cdot 0 + 0.015 \cdot 20 + 0.05 \cdot 6) \\
-                 &= t_{bench} \cdot 2.3
+                 &= t_{bench} \cdot (1 + 0.1 \cdot 7 + 0.15 \cdot 0 + 0.015 \cdot 26 + 0.05 \cdot 8) \\
+                 &= t_{bench} \cdot 2.49
 \end{align*}
 
 Zur Bestimmung von $t_{bench}$ wurden 3 Speicherabbilder mit jeweils 1120 Bytes zur Verfügung gestellt:
@@ -85,8 +85,8 @@ Die Länge des Algorithmus berechnet sich nach folgender Formel:
 
 \begin{align*}
     n_{bewertet} &= n_{Algorithmus} + 5 \cdot reg + 10 \cdot se + 3 \cdot alu\_use + 5 \cdot const \\
-                 &= 100 + 5 \cdot 7 + 10 \cdot 0 + 3 \cdot 23 + 5 \cdot 6 \\
-                 &= 234
+                 &= xxx + 5 \cdot 7 + 10 \cdot 0 + 3 \cdot 26 + 5 \cdot 8 \\
+                 &= xxx + 153
 \end{align*}
 
 \section{Abschließende Bewertung}
