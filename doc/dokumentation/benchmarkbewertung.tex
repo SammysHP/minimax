@@ -56,7 +56,7 @@ Die Laufzeit des Algorithmus wird in Minimaxtakten gezählt und berechnet sich n
 Zur Bestimmung von $t_{bench}$ wurden 3 Speicherabbilder mit jeweils 1120 Bytes zur Verfügung gestellt:
 
 \begin{enumerate}
-    \item Alle Pakete haben eine Länge 80 Bits (Pakete ohne Daten)
+    \item Alle Pakete haben eine Länge von 80 Bits (Pakete ohne Daten)
     \item Durchschnittliche Datenteillänge von 80 Bits
     \item Durchschnittliche Datenteillänge von 144 Bits
 \end{enumerate}
@@ -93,3 +93,18 @@ Die Länge des Algorithmus berechnet sich nach folgender Formel:
 \label{section:Dokumentation-BenchmarkBewertung-Bewertung}
 
 Dieser Algorithmus überzeugt hauptsächlich durch den einfachen Zugriff auf das Ergebnis. Da der Hauptspeicher unbegrenzt ist, stellt der große Bruttospeicherbedarf keinen allzu großen Nachteil dar. Die Laufzeit des Algorithmus ist der Aufgabe angemessen, kann mit einer definierteren Struktur der Daten aber noch optimiert werden. Die umfangreichen Hardwareerweiterungen erfordern eine ausreichend hohe Auflagengröße, da nicht vollständig auf Standardkomponenten zurückgegriffen werden kann. Für kleinere Stückzahlen findet sich eventuell eine umfangreichere Basismaschine, wodurch die Kosten eventuell reduziert werden können.
+
+\section{Probleme bei der Durchführung}
+\label{section:Dokumentation-BenchmarkBewertung-Probleme}
+
+Während der Entwicklung nahm die Implementierung für den Simulator die meiste Zeit in Anspruch. Das Verhalten war mehrfach unerwartet und undokumentiert. Fehlermeldungen bestanden i.d.R. lediglich aus Stacktraces, welche ohne den Quelltext jedoch weitgehend nutzlos waren. Hier sind Fehler aufgelistet, auf die wir gestoßen sind.
+
+\begin{itemize}
+    \item Multiplikation produziert Overflows und schneidet nicht einfach ab
+    \item Strings in der GUI sind nicht ausgeschrieben
+    \item Multiplexer A kann nur bis 12 rechnen (trotz theoretischer 4 Bit)
+    \item Multiplexer B kann nur bis 9 rechnen (trotz theoretischer 4 Bit)
+    \item if geht nur mit else
+    \item Leitungen lassen sich nicht teilen
+    \item Fehlermeldungen unbrauchbar, da kein Quelltext vorhanden ist
+\end{itemize}
