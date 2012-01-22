@@ -1,0 +1,16 @@
+\chapter{Steuertabelle}
+\label{chapter:Anhang-Steuertabelle}
+
+{
+    \scriptsize
+    \begin{longtable}{|@{\hspace{1pt}}l@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}l@{\hspace{1pt}}|}
+        \hline
+        \begin{sideways}BESCHREIBUNG\end{sideways} & \multicolumn{4}{c}{\begin{sideways}ALUSel.A\end{sideways}} & \multicolumn{4}{c}{\begin{sideways}ALUSel.B\end{sideways}} & \begin{sideways}MDR.Sel\end{sideways} & \begin{sideways}CS\end{sideways} & \begin{sideways}R/W\end{sideways} & \multicolumn{3}{c}{\begin{sideways}ALU.Ctrl\end{sideways}} & \begin{sideways}A.W\end{sideways} & \begin{sideways}PC.W\end{sideways} & \begin{sideways}MDR.W\end{sideways} & \begin{sideways}IR.W\end{sideways} & \begin{sideways}MAR.W\end{sideways} & \begin{sideways}TABELLENANFANG.W\end{sideways} & \begin{sideways}ZAEHLER.W\end{sideways} & \begin{sideways}FILLED.W\end{sideways} & \begin{sideways}FILLEDTMP.W\end{sideways} & \begin{sideways}BUFFER_ONE.W\end{sideways} & \begin{sideways}BUFFER_TWO.W\end{sideways} & \begin{sideways}KANALNR.W\end{sideways} & \begin{sideways}OP/A\end{sideways} & \begin{sideways}ALU==0\end{sideways} & \begin{sideways}RT"=Notation\end{sideways} \\
+        \hline
+        \hline
+        START&0&0&1&1&0&0&1&0&x&0&x&1&0&1&0&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP = AT / 32 \\
+        \hline
+        &0&0&0&0&0&1&1&0&x&0&x&0&0&0&0&0&0&0&0&1&0&0&0&0&0&0&0&x&TABELLENANFANG = ACCU+FILLEDTMP \\
+        \hline
+    \end{longtable}
+}
