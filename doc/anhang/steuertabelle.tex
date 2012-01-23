@@ -1,16 +1,184 @@
 \chapter{Steuertabelle}
 \label{chapter:Anhang-Steuertabelle}
 
-{
-    \scriptsize
-    \begin{longtable}{|@{\hspace{1pt}}l@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}@{\hspace{1pt}}c@{\hspace{1pt}}|@{\hspace{1pt}}l@{\hspace{1pt}}|}
-        \hline
-        \begin{sideways}BESCHREIBUNG\end{sideways} & \multicolumn{4}{c}{\begin{sideways}ALUSel.A\end{sideways}} & \multicolumn{4}{c}{\begin{sideways}ALUSel.B\end{sideways}} & \begin{sideways}MDR.Sel\end{sideways} & \begin{sideways}CS\end{sideways} & \begin{sideways}R/W\end{sideways} & \multicolumn{3}{c}{\begin{sideways}ALU.Ctrl\end{sideways}} & \begin{sideways}A.W\end{sideways} & \begin{sideways}PC.W\end{sideways} & \begin{sideways}MDR.W\end{sideways} & \begin{sideways}IR.W\end{sideways} & \begin{sideways}MAR.W\end{sideways} & \begin{sideways}TABELLENANFANG.W\end{sideways} & \begin{sideways}ZAEHLER.W\end{sideways} & \begin{sideways}FILLED.W\end{sideways} & \begin{sideways}FILLEDTMP.W\end{sideways} & \begin{sideways}BUFFER_ONE.W\end{sideways} & \begin{sideways}BUFFER_TWO.W\end{sideways} & \begin{sideways}KANALNR.W\end{sideways} & \begin{sideways}OP/A\end{sideways} & \begin{sideways}ALU==0\end{sideways} & \begin{sideways}RT"=Notation\end{sideways} \\
-        \hline
-        \hline
-        START&0&0&1&1&0&0&1&0&x&0&x&1&0&1&0&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP = AT / 32 \\
-        \hline
-        &0&0&0&0&0&1&1&0&x&0&x&0&0&0&0&0&0&0&0&1&0&0&0&0&0&0&0&x&TABELLENANFANG = ACCU+FILLEDTMP \\
-        \hline
-    \end{longtable}
+{\scriptsize
+\begin{longtable}{
+|@{\hspace{1pt}}l@{\hspace{1pt}}
+|@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+|@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+|@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+|@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+|@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+@{\hspace{1pt}}c@{\hspace{1pt}}
+|@{\hspace{1pt}}l@{\hspace{1pt}}|
+}
+\hline
+% header
+\begin{sideways}Label\end{sideways} &
+\multicolumn{4}{c|}{\begin{sideways}ALUSel.A\end{sideways}} &
+\multicolumn{4}{c|}{\begin{sideways}ALUSel.B\end{sideways}} &
+\begin{sideways}MDR.Sel\end{sideways} &
+\begin{sideways}CS\end{sideways} &
+\begin{sideways}R/W\end{sideways} &
+\multicolumn{3}{c|}{\begin{sideways}ALU Ctrl\end{sideways}} &
+\begin{sideways}A.W\end{sideways} &
+\begin{sideways}PC.W\end{sideways} &
+\begin{sideways}MDR.W\end{sideways} &
+\begin{sideways}IR.W\end{sideways} &
+\begin{sideways}MAR.W\end{sideways} &
+\begin{sideways}TABELLENANFANG.W\end{sideways} &
+\begin{sideways}FILLED.W\end{sideways} &
+\begin{sideways}FILLEDTMP.W\end{sideways} &
+\begin{sideways}BUFFER_ONE.W\end{sideways} &
+\begin{sideways}BUFFER_TWO.W\end{sideways} &
+\begin{sideways}KANALNR.W\end{sideways} &
+\begin{sideways}OP/A\end{sideways} &
+\begin{sideways}ALU==0\end{sideways} &
+\begin{sideways}RT"=Notation\end{sideways} \\
+
+\hline
+\hline
+
+    IFETCH&x&x&x&x&x&x&x&x&1&1&1&x&x&x&0&0&1&0&0&0&0&0&0&0&0&0&x&MDR $\gets$ M[MAR] \\ \hline
+          &x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&1&0&0&0&0&0&0&0&0&x&IR $\gets$ MDR \\ \hline
+     START&x&x&x&x&0&0&1&0&x&0&x&1&0&1&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP $\gets$ shiftr AT \\ \hline
+          &x&x&x&x&0&1&1&0&x&0&x&1&0&1&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP $\gets$ shiftr FILLEDTMP \\ \hline
+          &x&x&x&x&0&1&1&0&x&0&x&1&0&1&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP $\gets$ shiftr FILLEDTMP \\ \hline
+          &x&x&x&x&0&1&1&0&x&0&x&1&0&1&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP $\gets$ shiftr FILLEDTMP \\ \hline
+          &x&x&x&x&0&1&1&0&x&0&x&1&0&1&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP $\gets$ shiftr FILLEDTMP \\ \hline
+          &0&0&0&0&0&1&1&0&x&0&x&0&0&0&0&0&0&0&0&1&0&0&0&0&0&0&x&TABELLENANFANG $\gets$ ACCU + FILLEDTMP \\ \hline
+          &0&0&1&0&0&0&1&1&x&0&x&0&0&0&0&0&0&0&0&1&0&0&0&0&0&0&x&TABELLENANFANG $\gets$ TABELLENANFANG + 1 \\ \hline
+          &0&0&0&0&x&x&x&x&x&0&x&0&1&0&0&1&0&0&1&0&0&0&0&0&0&0&x&MAR $\gets$ PC $\gets$ ACCU \\ \hline
+          &x&x&x&x&x&x&x&x&1&1&1&x&x&x&0&0&1&0&0&0&0&0&0&0&0&0&x&MDR $\gets$ M[MAR] \\ \hline
+          &x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ MDR \\ \hline
+  EndCheck&x&x&x&x&x&x&x&x&x&1&0&x&x&x&0&0&0&0&0&0&0&0&0&0&0&0&x&M[MAR] $\gets$ MDR \\ \hline
+          &0&0&1&0&1&0&0&0&x&0&x&0&0&0&0&1&0&0&0&0&0&0&0&0&0&0&x&PC $\gets$ PC + 1 \\ \hline
+          &1&0&0&0&0&0&1&1&x&0&x&0&0&1&0&0&0&0&0&0&0&0&0&0&0&0&1/0&IF TABELLENANFANG - PC == 0 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO NextCell \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO END \\ \hline
+  NextCell&1&0&0&0&x&x&x&x&x&0&x&0&1&0&0&0&0&0&1&0&0&0&0&0&0&0&x&MAR $\gets$ PC \\ \hline
+          &0&0&1&1&x&x&x&x&1&1&1&0&1&0&0&0&1&0&0&0&1&0&0&0&0&0&x&MDR $\gets$ M[MAR] || FILLED $\gets$ 32 \\ \hline
+          &x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&0&1&0&0&x&BUFFER\_TWO $\gets$ MDR \\ \hline
+          &1&0&0&1&0&0&1&1&x&0&x&0&0&0&0&0&0&0&1&0&0&0&0&0&0&0&x&MAR $\gets$ TABELLENANFANG + KANALNR \\ \hline
+          &x&x&x&x&x&x&x&x&1&1&1&x&x&x&0&0&1&0&0&0&0&0&0&0&0&0&x&MDR $\gets$ M[MAR] \\ \hline
+   HeadChk&0&0&1&0&1&0&0&1&x&0&x&0&0&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ 14 + 1 \\ \hline
+          &0&0&0&0&0&1&0&0&x&0&x&1&1&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ BUFFER\_ONE \&\& ACCU \\ \hline
+          &0&0&0&0&1&0&0&1&x&0&x&0&0&1&0&0&0&0&0&0&0&0&0&0&0&0&1/0&IF STARTSEQ - ACCU == 0 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO DATA \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO j32n1 \\ \hline
+      &&&&&&&&&&&&&&&&&&&&&&&&&&&& \# JUMP 32BIT \\ \hline
+     j32n1&0&0&1&0&1&0&0&0&x&0&x&0&0&0&0&1&0&0&1&0&0&0&0&0&0&0&x&PC $\gets$ MAR $\gets$ PC + 1 \\ \hline
+          &x&x&x&x&x&x&x&x&1&1&1&x&x&x&0&0&1&0&0&0&0&0&0&0&0&0&x&MDR $\gets$ M[MAR] \\ \hline
+          &0&0&1&1&0&1&1&1&x&0&x&0&0&1&0&0&0&0&0&0&0&0&0&0&0&0&1/0&IF FILLED - 32 == 0 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j32n1j4 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO j32n1j3 \\ \hline
+   j32n1j4&x&x&x&x&0&1&1&1&x&0&x&0&1&1&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP $\gets$ FILLED \\ \hline
+          &x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ MDR \\ \hline
+          &0&1&1&0&x&x&x&x&x&0&x&0&1&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ 2^{31} \\ \hline
+          &0&0&1&0&0&0&0&0&x&0&x&0&0&1&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ ACCU - 1 \\ \hline
+   j32n1s1&0&0&0&0&0&1&0&0&x&0&x&1&1&0&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ BUFFER\_ONE \&\& ACCU \\ \hline
+          &1&1&0&0&0&1&0&0&x&0&x&1&0&0&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ BUFFER\_ONE * 2 \\ \hline
+          &0&0&1&0&0&1&1&0&x&0&x&0&0&1&0&0&0&0&0&0&0&1&0&0&0&0&1/0&FILLEDTMP $\gets$ FILLEDTMP - 1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j32n1s1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO j32n1j1 \\ \hline
+   j32n1j1&x&x&x&x&0&1&0&0&x&0&x&0&1&1&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ BUFFER\_ONE \\ \hline
+          &0&0&0&0&0&1&0&1&x&0&x&0&0&0&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ ACCU + BUFFER\_TWO \\ \hline
+          &x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&0&1&0&0&x&BUFFER\_TWO $\gets$ MDR \\ \hline
+          &0&0&1&1&x&x&x&x&x&0&x&0&1&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ 32 \\ \hline
+          &0&1&1&1&0&0&0&0&x&0&x&0&0&1&0&0&0&0&0&0&0&1&0&0&0&0&1/0&FILLEDTMP $\gets$ ACCU - FILLED \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j32n1s2 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO ChSave \\ \hline
+   j32n1s2&x&x&x&x&0&1&0&1&x&0&x&1&0&1&0&0&0&0&0&0&0&0&0&1&0&0&x&BUFFER\_TWO $\gets$ Shiftr BUFFER\_TWO \\ \hline
+          &0&0&1&0&0&1&1&0&x&0&x&0&0&1&0&0&0&0&0&0&0&1&0&0&0&0&1/0&FILLEDTMP $\gets$ FILLEDTMP - 1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j32n1s2 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO ChSave \\ \hline
+   j32n1j3&x&x&x&x&0&1&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ BUFFER\_TWO \\ \hline
+          &x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&0&1&0&0&x&BUFFER\_TWO $\gets$ MDR \\ \hline
+       &&&&&&&&&&&&&&&&&&&&&&&&&&&& \# Save Channel \\ \hline
+    ChSave&1&0&1&1&0&1&0&0&x&0&x&1&1&0&1&0&0&0&0&0&0&0&0&0&1&0&x&KANALNR $\gets$ BUFFER\_ONE \&\& 0000ffff \\ \hline
+          &1&0&1&0&x&x&x&x&x&0&x&0&1&0&0&0&0&0&0&0&0&1&0&0&0&0&1/0&FILLEDTMP $\gets$ 16 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j16shift \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO j16shift \\ \hline
+       &&&&&&&&&&&&&&&&&&&&&&&&&&&& \# JUMP 16BIT \\ \hline
+   j16fill&0&0&1&0&1&0&0&0&x&0&x&0&0&0&0&1&0&0&1&0&0&0&0&0&0&0&x&MAR $\gets$ PC $\gets$ PC + 1 \\ \hline
+          &0&0&1&1&x&x&x&x&1&1&1&0&1&0&0&0&1&0&0&0&1&0&0&0&0&0&x&MDR $\gets$ M[MAR] || FILLED $\gets$ 32 \\ \hline
+          &x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&0&1&0&0&x&BUFFER\_TWO $\gets$ MDR \\ \hline
+  j16shift&x&x&x&x&0&1&0&0&x&0&x&1&0&1&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ shiftr BUFFER\_ONE \\ \hline
+          &0&0&1&0&0&1&0&1&x&0&x&1&1&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ BUFFER\_TWO \&\& 00000001 \\ \hline
+          &0&1&1&0&0&0&0&0&x&0&x&1&0&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ ACCU * 2^{31} \\ \hline
+          &0&0&0&0&0&1&0&0&x&0&x&0&0&0&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ BUFFER\_ONE + ACCU \\ \hline
+          &x&x&x&x&0&1&0&1&x&0&x&1&0&1&0&0&0&0&0&0&0&0&0&1&0&0&x&BUFFER\_TWO $\gets$ shiftr BUFFER\_TWO \\ \hline
+   16endCk&0&0&1&0&0&1&1&0&x&0&x&0&0&1&0&0&0&0&0&0&0&1&0&0&0&0&1/0&FILLEDTMP $\gets$ FILLEDTMP - 1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j16n \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO j32n2 \\ \hline
+      j16n&0&0&1&0&0&1&1&1&x&0&x&0&0&1&0&0&0&0&0&0&1&0&0&0&0&0&1/0&FILLED $\gets$ FILLED - 1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j16shift \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO j16fill \\ \hline
+       &&&&&&&&&&&&&&&&&&&&&&&&&&&& \# JUMP 32BIT \\ \hline
+     j32n2&0&0&1&0&1&0&0&0&x&0&x&0&0&0&0&1&0&0&1&0&0&0&0&0&0&0&x&PC $\gets$ MAR $\gets$ PC + 1 \\ \hline
+          &1&0&0&0&0&0&1&1&x&0&x&0&0&1&0&0&0&0&0&0&0&0&0&0&0&0&1/0&IF TABELLENANFANG - PC == 0 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j32n2n \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO END \\ \hline
+    j32n2n&x&x&x&x&x&x&x&x&1&1&1&x&x&x&0&0&1&0&0&0&0&0&0&0&0&0&x&MDR $\gets$ M[MAR] \\ \hline
+          &0&0&1&0&0&1&1&1&x&0&x&0&0&1&0&0&0&0&0&0&1&0&0&0&0&0&1/0&FILLED $\gets$ FILLED - 1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j32n2j4 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO j32n2j3 \\ \hline
+   j32n2j4&x&x&x&x&0&1&1&1&x&0&x&0&1&1&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP $\gets$ FILLED \\ \hline
+          &x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ MDR \\ \hline
+          &0&1&1&0&x&x&x&x&x&0&x&0&1&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ 2^{31} \\ \hline
+          &0&0&1&0&0&0&0&0&x&0&x&0&0&1&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ ACCU - 1 \\ \hline
+   j32n2s1&0&0&0&0&0&1&0&0&x&0&x&1&1&0&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ BUFFER\_ONE \&\& ACCU \\ \hline
+          &1&1&0&0&0&1&0&0&x&0&x&1&0&0&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ BUFFER\_ONE * 2 \\ \hline
+          &0&0&1&0&0&1&1&0&x&0&x&0&0&1&0&0&0&0&0&0&0&1&0&0&0&0&1/0&FILLEDTMP $\gets$ FILLEDTMP - 1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j32n2s1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO j32n2j1 \\ \hline
+   j32n2j1&x&x&x&x&0&1&0&0&x&0&x&0&1&1&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ BUFFER\_ONE \\ \hline
+          &0&0&0&0&0&1&0&1&x&0&x&0&0&0&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ ACCU + BUFFER\_TWO \\ \hline
+          &x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&0&1&0&0&x&BUFFER\_TWO $\gets$ MDR \\ \hline
+          &0&0&1&1&x&x&x&x&x&0&x&0&1&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ 32 \\ \hline
+          &0&1&1&1&0&0&0&0&x&0&x&0&0&1&0&0&0&0&0&0&0&1&0&0&0&0&x&FILLEDTMP $\gets$ ACCU - FILLED \\ \hline
+   j32n2s2&x&x&x&x&0&1&0&1&x&0&x&1&0&1&0&0&0&0&0&0&0&0&0&1&0&0&x&BUFFER\_TWO $\gets$ Shiftr BUFFER\_TWO \\ \hline
+          &0&0&1&0&0&1&1&0&x&0&x&0&0&1&0&0&0&0&0&0&0&1&0&0&0&0&1/0&FILLEDTMP $\gets$ FILLEDTMP - 1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO j32n2s2 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO AfterHead \\ \hline
+   j32n2j3&x&x&x&x&0&0&0&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&1&0&0&0&1/0&BUFFER\_ONE $\gets$ MDR \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO AfterHead \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO AfterHead \\ \hline
+      DATA&0&0&1&0&0&0&0&1&0&0&x&0&0&0&0&0&1&0&0&0&0&0&0&0&0&0&x&MDR $\gets$ MDR + 1 \\ \hline
+          &x&x&x&x&0&1&0&0&x&0&x&1&0&1&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ shiftr BUFFER\_ONE \\ \hline
+          &0&0&1&0&0&1&0&1&x&0&x&1&1&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ BUFFER\_TWO \&\& 00000001 \\ \hline
+          &0&1&1&0&0&0&0&0&x&0&x&1&0&0&1&0&0&0&0&0&0&0&0&0&0&0&x&ACCU $\gets$ ACCU * 2^{31} \\ \hline
+          &0&0&0&0&0&1&0&0&x&0&x&0&0&0&0&0&0&0&0&0&0&0&1&0&0&0&x&BUFFER\_ONE $\gets$ BUFFER\_ONE + ACCU \\ \hline
+          &x&x&x&x&0&1&0&1&x&0&x&1&0&1&0&0&0&0&0&0&0&0&0&1&0&0&x&BUFFER\_TWO $\gets$ shiftr BUFFER\_TWO \\ \hline
+          &0&0&1&0&0&1&1&1&x&0&x&0&0&1&0&0&0&0&0&0&1&0&0&0&0&0&1/0&FILLED $\gets$ FILLED - 1 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO HeadChk \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO EndCheck \\ \hline
+ AfterHead&1&0&0&1&0&0&1&1&x&0&x&0&0&0&0&0&0&0&1&0&0&0&0&0&0&0&x&MAR $\gets$ TABELLENANFANG + KANALNR \\ \hline
+          &x&x&x&x&x&x&x&x&1&1&1&x&x&x&0&0&1&0&0&0&0&0&0&0&0&0&x&MDR $\gets$ M[MAR] \\ \hline
+          &x&x&x&x&0&1&1&1&x&0&x&0&1&1&0&0&0&0&0&0&0&0&0&0&0&0&1/0&IF FILLED == 0 \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 0&GOTO HeadChk \\ \hline
+          &&&&&&&&&&&&&&&&&&&&&&&&&&& 1&GOTO EndCheck \\ \hline
+       END&x&x&x&x&x&x&x&x&x&0&x&x&x&x&0&0&0&0&0&0&0&0&0&0&0&0&x& \\ \hline
+\end{longtable}
 }
