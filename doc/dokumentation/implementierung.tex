@@ -22,7 +22,7 @@
 \begin{description}
     \item[MUL] $ALUresult \gets A \cdot B$
     \item[SR.B] $ALUresult \gets 0@B_{31..1}$
-    \item[AND] $ALUresult \gets A \& B$
+    \item[AND] $ALUresult \gets A \&\& B$
 \end{description}
 
 Die hinzugefügten Operationen waren bereits im Simulator implementiert, sodass wir sie lediglich "`aktivieren"' mussten.
@@ -93,7 +93,7 @@ In \autoref{figure:Dokumentation-Implementierung-Hardwareerweiterung-Layout} bef
     FILLED               & 0111 &  7 \\
     PC                   & 1000 &  8 \\
     KANALNR              & 1001 &  9 \\
-    (16)_{10}            & 1010 & 10 \\
+    (2^4)_{10}           & 1010 & 10 \\
     (65535)_{10}         & 1011 & 11 \\
     (2)_{10}             & 1100 & 12 \\
 \end{tabular}
