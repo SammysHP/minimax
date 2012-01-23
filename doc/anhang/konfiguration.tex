@@ -1,2 +1,156 @@
 \chapter{Konfiguration}
 \label{chapter:Anhang-Konfiguration}
+
+{\footnotesize\linespread{0.55}\linenumbers\begin{verbatim}START ERWEITERUNG
+
+  START REGISTER
+  # hier sind alle neuen Register einzutragen
+    %
+    Name=TABELLENANFANG
+    Nummer=0
+    Breite=32
+    Steuername=TABELLENANFANG.W
+    %%
+    
+    %
+    Name=FILLEDTMP
+    Nummer=0
+    Breite=32
+    Steuername=FILLEDTMP.W
+    %%
+
+    %
+    Name=KANALNR
+    Nummer=0
+    Breite=32
+    Steuername=KANALNR.W
+    %%
+
+    %
+    Name=FILLED
+    Nummer=0
+    Breite=32
+    Steuername=FILLED.W
+    %%
+
+    %
+    Name=BUFFER_ONE
+    Nummer=0
+    Breite=32
+    Steuername=BUFFER_ONE.W
+    %%
+
+    %
+    Name=BUFFER_TWO
+    Nummer=0
+    Breite=32
+    Steuername=BUFFER_TWO.W
+    %%
+
+  ENDE REGISTER
+  
+  
+  START MULTIPLEXER
+  # hier gibt man für die zu ändernden Multiplexer alle Angaben an dabei muß der Name
+  # und die Nummer mit dem entsprechenden Multiplexers der Basismaschine übereinstimmen
+  
+    %
+    Steuername=ALUSel.A
+    Nummer=0
+    Eingaenge=13
+    %%
+    
+    %
+    Steuername=ALUSel.B
+    Nummer=0
+    Eingaenge=10
+    %%
+  
+  
+  ENDE MULTIPLEXER
+  
+  START ALU
+
+    %    
+    Funktionen=ADD,SUB2,TRANS.A,TRANS.B,MUL,SR.B,AND
+    %%    
+     
+  ENDE ALU
+    
+  START CU
+    # nichts zu tun  
+  ENDE CU
+  
+  START SIGN
+  #bei Bedarf einfügen
+    
+    #%  
+    #Name=sign ext.
+    #Nummer=1
+    #Breite=24
+    %%  
+  
+  ENDE SIGN
+    
+  START SPEICHER
+   # nichts zu tun  
+  ENDE SPEICHER
+  
+    
+  START VERBINDUNGEN
+  # hier sind alle(!) Verbindungen einzutragen
+    #Ausgang,Nummer,Port;Eingang,Nummer,Port;
+    
+    #START SPEICHER  
+      MEM,0,DO;MDR.Sel,0,1
+    #ENDE SPEICHER 
+    
+    #START REGISTER
+      MAR,0,0;MEM,0,A
+      MDR,0,0;MEM,0,DI;ALUSel.B,0,1
+      IR,0,0;CU,1,0;sign ext.,0,0
+      ACCU,0,0;ALUSel.A,0,0;ALUSel.B,0,0
+      KANALNR,0,0;ALUSel.A,0,9
+      TABELLENANFANG,0,0;ALUSel.B,0,3
+      FILLED,0,0;ALUSel.A,0,7;ALUSel.B,0,7
+      FILLEDTMP,0,0;ALUSel.B,0,6
+      PC,0,0;ALUSel.A,0,8;ALUSel.B,0,8
+      BUFFER_ONE,0,0;ALUSel.B,0,4
+      BUFFER_TWO,0,0;ALUSel.B,0,5
+    #ENDE REGISTER
+    
+    #START SIGNEXT
+      sign ext.,0,0;ALUSel.B,0,2
+    #ENDE SIGNEXT
+    
+    #START MULTIPLEXER
+      MDR.Sel,0,0;MDR,0,0
+      ALUSel.A,0,0;ALU,0,A
+      ALUSel.B,0,0;ALU,0,B
+    #ENDE MULTIPLEXER
+        
+    #START ALU
+      ALU,0,0;TABELLENANFANG,0,0;FILLEDTMP,0,0;KANALNR,0,0;FILLED,0,0;
+        BUFFER_ONE,0,0;BUFFER_TWO,0,0;ACCU,0,0;PC,0,0;MDR.Sel,0,0;IR,0,0;MAR,0,0
+      ALU==0,ALU,0;CU,0,0
+    #ENDE ALU
+
+    #START KONSTANTEN
+    # 2er-Potenzen: 2^31
+      &&,0,0;ALUSel.A,0,1
+      &&,1,0;ALUSel.A,0,2
+      &&,32,0;ALUSel.A,0,3
+      &&,2^16,0;ALUSel.A,0,4
+      &&,2^28,0;ALUSel.A,0,5
+      &&,2^31,0;ALUSel.A,0,6
+      #e
+      &&,14,0;ALUSel.B,0,9
+      &&,65535,0;ALUSel.A,0,11
+      &&,16,0;ALUSel.A,0,10
+      &&,2,0;ALUSel.A,0,12
+    #ENDE KONSTANTEN
+  
+  ENDE VERBINDUNGEN
+  
+ENDE ERWEITERUNG
+\end{verbatim}}

@@ -4,7 +4,7 @@
 \section{Berechnung}
 \label{section:Dokumentation-BenchmarkBewertung-Berechnung}
 
-Für die Berechnung der Laufzeit und für die Bewertung des Algorithmus gelten folgende Vorschriften:
+Für die Berechnung der Laufzeit, der Länge und für die Bewertung des Algorithmus gelten folgende Vorschriften:
 
 \subsection{Variablen}
 \label{subsection:Dokumentation-BenchmarkBewertung-Berechnung-Variablen}
@@ -35,11 +35,13 @@ Für die Berechnung der Laufzeit und für die Bewertung des Algorithmus gelten f
 Im Folgenden sind die Werte für den verwendeten Algoritmus angegeben:
 
 \begin{align*}
-    reg      &= 7 \\
+    reg      &= 6 \\
     se       &= 0 \\
-    const    &= 8 \\
-    alu\_add &= 10 + 10 + 6 = 26 \\
-    alu\_use &= 10 + 10 + 6 = 26
+    const    &= 8 \\ \\
+    alu\_add &= MUL + AND + SR.B \\
+             &= 16 + 6 + 5 = 27 \\ \\
+    alu\_add &= MUL + AND + SR.B \\
+             &= 16 + 6 + 5 = 27
 \end{align*}
 
 \subsection{Laufzeit}
@@ -49,8 +51,8 @@ Die Laufzeit des Algorithmus wird in Minimaxtakten gezählt und berechnet sich n
 
 \begin{align*}
     t_{bewertet} &= t_{bench} \cdot (1 + 0.1 \cdot reg + 0.15 \cdot se + 0.015 \cdot alu\_add + 0.05 \cdot const) \\
-                 &= t_{bench} \cdot (1 + 0.1 \cdot 7 + 0.15 \cdot 0 + 0.015 \cdot 26 + 0.05 \cdot 8) \\
-                 &= t_{bench} \cdot 2.49
+                 &= t_{bench} \cdot (1 + 0.1 \cdot 6 + 0.15 \cdot 0 + 0.015 \cdot 27 + 0.05 \cdot 8) \\
+                 &= t_{bench} \cdot 2.405
 \end{align*}
 
 Zur Bestimmung von $t_{bench}$ wurden 3 Speicherabbilder mit jeweils 1120 Bytes zur Verfügung gestellt:
@@ -69,11 +71,11 @@ Nach Simulation des Algorithmus mit allen drei Beispielen wurden folgende Ergebn
         Speicherabbild & Minimaxtakte & $t_{bewertet}$ \\
         \hline
         \hline
-        1 & 2000 & 4000 \\
+        1 & 24\,711 & 59\ 429.955 \\
         \hline
-        2 & 2000 & 4000 \\
+        2 & 58\,311 & 140\ 237.955 \\
         \hline
-        3 & 2000 & 4000 \\
+        3 & 67\,895 & 163\ 287.475 \\
         \hline
     \end{tabular}
 \end{center}
@@ -85,14 +87,15 @@ Die Länge des Algorithmus berechnet sich nach folgender Formel:
 
 \begin{align*}
     n_{bewertet} &= n_{Algorithmus} + 5 \cdot reg + 10 \cdot se + 3 \cdot alu\_use + 5 \cdot const \\
-                 &= xxx + 5 \cdot 7 + 10 \cdot 0 + 3 \cdot 26 + 5 \cdot 8 \\
-                 &= xxx + 153
+                 &= 116 + 5 \cdot 6 + 10 \cdot 0 + 3 \cdot 27 + 5 \cdot 8 \\
+                 &= 116 + 151
+                 &= 267
 \end{align*}
 
 \section{Abschließende Bewertung}
 \label{section:Dokumentation-BenchmarkBewertung-Bewertung}
 
-Dieser Algorithmus überzeugt hauptsächlich durch den einfachen Zugriff auf das Ergebnis. Da der Hauptspeicher unbegrenzt ist, stellt der große Bruttospeicherbedarf keinen allzu großen Nachteil dar. Die Laufzeit des Algorithmus ist der Aufgabe angemessen, kann mit einer definierteren Struktur der Daten aber noch optimiert werden. Die umfangreichen Hardwareerweiterungen erfordern eine ausreichend hohe Auflagengröße, da nicht vollständig auf Standardkomponenten zurückgegriffen werden kann. Für kleinere Stückzahlen findet sich eventuell eine umfangreichere Basismaschine, wodurch die Kosten eventuell reduziert werden können.
+Dieser Algorithmus überzeugt hauptsächlich durch den einfachen Zugriff auf das Ergebnis. Da der Hauptspeicher unbegrenzt ist, stellt der große Bruttospeicherbedarf keinen allzu großen Nachteil dar. Die Laufzeit des Algorithmus ist der Aufgabe angemessen, wäre aber mit einem mächtigeren Simulator deutlich niedriger. Viele Implentierungen stellen Workarounds für Probleme dar, die erst durch den Simulator entstanden sind (wie z.B. unbedingte Sprünge). Die umfangreichen Hardwareerweiterungen erfordern eine ausreichend hohe Auflagengröße, da nicht vollständig auf Standardkomponenten zurückgegriffen werden kann. Für kleinere Stückzahlen findet sich eventuell eine umfangreichere Basismaschine, wodurch die Kosten eventuell reduziert werden können.
 
 \section{Probleme bei der Durchführung}
 \label{section:Dokumentation-BenchmarkBewertung-Probleme}
@@ -106,5 +109,14 @@ Während der Entwicklung nahm die Implementierung für den Simulator die meiste 
     \item Multiplexer B kann nur bis 9 rechnen (trotz theoretischer 4 Bit)
     \item if geht nur mit else
     \item Leitungen lassen sich nicht teilen
-    \item Fehlermeldungen unbrauchbar, da kein Quelltext vorhanden ist
+    \item Fehlermeldungen (Stacktrace) unbrauchbar, da kein Quelltext vorhanden ist
+    \item kann nicht vorzeichenlos durch 2 teilen (Shiftersatz)\footnote{Beispiel:\\
+\texttt{
+999a6666 / 2\\
+10011001100110100110011001100110\\
+cccd3333 simu\\
+11001100110011010011001100110011\\
+4ccd3333 wolfram\\
+01001100110011010011001100110011}}
+    \item unbedingte Sprünge nicht möglich
 \end{itemize}
