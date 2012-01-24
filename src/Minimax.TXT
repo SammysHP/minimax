@@ -1,0 +1,161 @@
+#Konfigurationsdatei für die Minimax-Maschine
+START MASCHINE
+
+  START REGISTER
+
+    %
+    Name=ACCU
+    Nummer=0
+    Breite=32
+    Steuername=A.W
+    %%
+    
+    %
+    Name=PC
+    Nummer=0
+    Breite=32
+    Steuername=PC.W
+    %%
+    
+    %
+    Name=MDR
+    Nummer=0
+    Breite=32
+    Steuername=MDR.W
+    %%
+    
+    %
+    Name=IR
+    Nummer=0
+    Breite=32
+    Steuername=IR.W
+    %%
+    
+    %
+    Name=MAR
+    Nummer=0
+    Breite=24
+    Steuername=MAR.W
+    %%
+    
+  ENDE REGISTER
+  
+  START MULTIPLEXER
+
+    %  
+    Steuername=ALUSel.A
+    Nummer=0
+    Eingaenge=3
+    %%
+    
+    %    
+    Steuername=ALUSel.B
+    Nummer=0
+    Eingaenge=4
+    %%
+    
+    %    
+    Steuername=MDR.Sel
+    Nummer=0
+    Eingaenge=2
+    %%
+       
+  ENDE MULTIPLEXER
+
+  START ALU
+
+    %    
+    Name=ALU
+    Nummer=0
+    NameA=A
+    NameB=B
+    Steuername=ALU Ctrl
+    Funktionen=ADD,SUB,TRANS.A,TRANS.B
+    %%
+        
+  ENDE ALU
+
+  START CU
+
+    %  
+    Name=CU
+    Nummer=0
+    %%
+    
+    %  
+    Name=CU
+    Nummer=1
+    %%
+      
+  ENDE CU
+  
+  START SIGN
+
+    %  
+    Name=sign ext.
+    Nummer=0
+    Breite=24
+    %%
+      
+  ENDE SIGN
+  
+  START SPEICHER
+
+    %  
+    Name=MEM
+    Nummer=0
+    NameEingangSteuer=A
+    NameEingangDaten=DI
+    NameAusgangDaten=DO
+    NameLeseSchreib=HS
+    NameSteuerLeseSchreib=R/W
+    NameSteuerSpeicher=CS
+    BreiteEingangSteuer=24
+    BreiteEingangDaten=32
+    BreiteAusgangDaten=32
+    %%
+        
+  ENDE SPEICHER
+  
+  START VERBINDUNGEN
+  
+  #Ausgang,Nummer,Port;Eingang,Nummer,Port;
+    
+   
+    #START SPEICHER  
+      MEM,0,DO;MDR.Sel,0,1
+    #ENDE SPEICHER
+    
+    #START REGISTER
+      MAR,0,0;MEM,0,A
+      MDR,0,0;MEM,0,DI;ALUSel.B,0,0
+      IR,0,0;CU,1,0;sign ext.,0,0
+      PC,0,0;ALUSel.B,0,1
+      ACCU,0,0;ALUSel.B,0,3;ALUSel.A,0,2
+    #ENDE REGISTER
+    
+    #START SIGNEXT
+        sign ext.,0,0;ALUSel.B,0,2
+    #ENDE SIGNEXT
+    
+    #START MULTIPLEXER
+      MDR.Sel,0,0;MDR,0,0
+      ALUSel.A,0,0;ALU,0,A
+      ALUSel.B,0,0;ALU,0,B
+    #ENDE MULTIPLEXER
+        
+    #START ALU
+      ALU,0,0;ACCU,0,0;PC,0,0;MDR.Sel,0,0;IR,0,0;MAR,0,0
+      ALU==0,ALU,0;CU,0,0
+    #ENDE ALU
+       
+    #START KONSTANTEN
+      &&,0,0;ALUSel.A,0,0
+      &&,1,0;ALUSel.A,0,1
+    #ENDE KONSTANTEN	
+    
+  ENDE VERBINDUNGEN
+  
+ENDE MASCHINE
+
+    

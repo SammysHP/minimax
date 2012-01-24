@@ -1,0 +1,141 @@
+START INIT
+#Steuersignale , CU-Eingänge
+
+    ALUSel.A,ALUSel.B,MDR.Sel,CS,R/W,ALU Ctrl,A.W,PC.W,MDR.W,IR.W,MAR.W,TABELLENANFANG.W,FILLED.W,FILLEDTMP.W,BUFFER_ONE.W,BUFFER_TWO.W,KANALNR.W,OP/A,ALU==0
+  
+ENDE INIT
+
+START STEUER
+#Label, Steuersignale, Bemerkung
+
+    IFETCH,x,x,x,x,x,x,x,x,1,1,1,x,x,x,0,0,1,0,0,0,0,0,0,0,0,0,x,MDR <- M[MAR]
+          ,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,x,IR <- MDR
+     START,x,x,x,x,0,0,1,0,x,0,x,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,x,FILLEDTMP <- shiftr AT
+          ,x,x,x,x,0,1,1,0,x,0,x,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,x,FILLEDTMP <- shiftr FILLEDTMP
+          ,x,x,x,x,0,1,1,0,x,0,x,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,x,FILLEDTMP <- shiftr FILLEDTMP
+          ,x,x,x,x,0,1,1,0,x,0,x,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,x,FILLEDTMP <- shiftr FILLEDTMP
+          ,x,x,x,x,0,1,1,0,x,0,x,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,x,FILLEDTMP <- shiftr FILLEDTMP
+          ,0,0,0,0,0,1,1,0,x,0,x,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,x,TABELLENANFANG <- ACCU + FILLEDTMP
+          ,0,0,1,0,0,0,1,1,x,0,x,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,x,TABELLENANFANG <- TABELLENANFANG + 1
+          ,0,0,0,0,x,x,x,x,x,0,x,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,x,MAR <- PC <- ACCU
+          ,x,x,x,x,x,x,x,x,1,1,1,x,x,x,0,0,1,0,0,0,0,0,0,0,0,0,x,MDR <- M[MAR]
+          ,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- MDR
+  EndCheck,x,x,x,x,x,x,x,x,x,1,0,x,x,x,0,0,0,0,0,0,0,0,0,0,0,0,x,M[MAR] <- MDR
+          ,0,0,1,0,1,0,0,0,x,0,x,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,x,PC <- PC + 1
+          ,1,0,0,0,0,0,1,1,x,0,x,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1/0,IF TABELLENANFANG - PC == 0
+          0,GOTO NextCell
+          1,GOTO END
+  NextCell,1,0,0,0,x,x,x,x,x,0,x,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,x,MAR <- PC
+          ,0,0,1,1,x,x,x,x,1,1,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,x,MDR <- M[MAR] || FILLED <- 32
+          ,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,x,BUFFER_TWO <- MDR
+          ,1,0,0,1,0,0,1,1,x,0,x,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,x,MAR <- TABELLENANFANG + KANALNR
+          ,x,x,x,x,x,x,x,x,1,1,1,x,x,x,0,0,1,0,0,0,0,0,0,0,0,0,x,MDR <- M[MAR]
+   HeadChk,0,0,1,0,1,0,0,1,x,0,x,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- 14 + 1
+          ,0,0,0,0,0,1,0,0,x,0,x,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- BUFFER_ONE && ACCU
+          ,0,0,0,0,1,0,0,1,x,0,x,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1/0,IF STARTSEQ - ACCU == 0
+          0,GOTO DATA
+          1,GOTO j32n1
+      # JUMP 32BIT
+     j32n1,0,0,1,0,1,0,0,0,x,0,x,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,x,PC <- MAR <- PC + 1
+          ,x,x,x,x,x,x,x,x,1,1,1,x,x,x,0,0,1,0,0,0,0,0,0,0,0,0,x,MDR <- M[MAR]
+          ,0,0,1,1,0,1,1,1,x,0,x,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1/0,IF FILLED - 32 == 0
+          0,GOTO j32n1j4
+          1,GOTO j32n1j3
+   j32n1j4,x,x,x,x,0,1,1,1,x,0,x,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,x,FILLEDTMP <- FILLED
+          ,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- MDR
+          ,0,1,1,0,x,x,x,x,x,0,x,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- 2^31
+          ,0,0,1,0,0,0,0,0,x,0,x,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- ACCU - 1
+   j32n1s1,0,0,0,0,0,1,0,0,x,0,x,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- BUFFER_ONE && ACCU
+          ,1,0,1,1,0,1,0,0,x,0,x,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- BUFFER_ONE * 2
+          ,0,0,1,0,0,1,1,0,x,0,x,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1/0,FILLEDTMP <- FILLEDTMP - 1
+          0,GOTO j32n1s1
+          1,GOTO j32n1j1
+   j32n1j1,x,x,x,x,0,1,0,0,x,0,x,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- BUFFER_ONE
+          ,0,0,0,0,0,1,0,1,x,0,x,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- ACCU + BUFFER_TWO
+          ,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,x,BUFFER_TWO <- MDR
+          ,0,0,1,1,x,x,x,x,x,0,x,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- 32
+          ,0,1,1,1,0,0,0,0,x,0,x,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1/0,FILLEDTMP <- ACCU - FILLED
+          0,GOTO j32n1s2
+          1,GOTO ChSave
+   j32n1s2,x,x,x,x,0,1,0,1,x,0,x,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,x,BUFFER_TWO <- Shiftr BUFFER_TWO
+          ,0,0,1,0,0,1,1,0,x,0,x,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1/0,FILLEDTMP <- FILLEDTMP - 1
+          0,GOTO j32n1s2
+          1,GOTO ChSave
+   j32n1j3,x,x,x,x,0,1,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- BUFFER_TWO
+          ,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,x,BUFFER_TWO <- MDR
+       # Save Channel
+    ChSave,0,1,0,0,x,x,x,x,x,0,x,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- 2^16
+          ,0,0,1,0,0,0,0,0,x,0,x,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- ACCU - 1
+          ,0,0,0,0,0,1,0,0,x,0,x,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,x,KANALNR <- BUFFER_ONE && ACCU
+          ,1,0,1,0,x,x,x,x,x,0,x,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1/0,FILLEDTMP <- 16
+          0,GOTO j16shift
+          1,GOTO j16shift
+       # JUMP 16BIT
+   j16fill,0,0,1,0,1,0,0,0,x,0,x,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,x,MAR <- PC <- PC + 1
+          ,0,0,1,1,x,x,x,x,1,1,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,x,MDR <- M[MAR] || FILLED <- 32
+          ,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,x,BUFFER_TWO <- MDR
+  j16shift,x,x,x,x,0,1,0,0,x,0,x,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- shiftr BUFFER_ONE
+          ,0,0,1,0,0,1,0,1,x,0,x,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- BUFFER_TWO && 00000001
+          ,0,1,1,0,0,0,0,0,x,0,x,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- ACCU * 2^31
+          ,0,0,0,0,0,1,0,0,x,0,x,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- BUFFER_ONE + ACCU
+          ,x,x,x,x,0,1,0,1,x,0,x,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,x,BUFFER_TWO <- shiftr BUFFER_TWO
+   16endCk,0,0,1,0,0,1,1,0,x,0,x,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1/0,FILLEDTMP <- FILLEDTMP - 1
+          0,GOTO j16n
+          1,GOTO j32n2
+      j16n,0,0,1,0,0,1,1,1,x,0,x,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1/0,FILLED <- FILLED - 1
+          0,GOTO j16shift
+          1,GOTO j16fill
+      # JUMP 32BIT
+     j32n2,0,0,1,0,1,0,0,0,x,0,x,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,x,PC <- MAR <- PC + 1
+          ,1,0,0,0,0,0,1,1,x,0,x,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1/0,IF TABELLENANFANG - PC == 0
+          0,GOTO j32n2n
+          1,GOTO END
+    j32n2n,x,x,x,x,x,x,x,x,1,1,1,x,x,x,0,0,1,0,0,0,0,0,0,0,0,0,x,MDR <- M[MAR]
+          ,0,0,1,0,0,1,1,1,x,0,x,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1/0,FILLED <- FILLED - 1
+          0,GOTO j32n2j4
+          1,GOTO j32n2j3
+   j32n2j4,x,x,x,x,0,1,1,1,x,0,x,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,x,FILLEDTMP <- FILLED
+          ,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- MDR
+          ,0,1,1,0,x,x,x,x,x,0,x,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- 2^31
+          ,0,0,1,0,0,0,0,0,x,0,x,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- ACCU - 1
+   j32n2s1,0,0,0,0,0,1,0,0,x,0,x,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- BUFFER_ONE && ACCU
+          ,1,0,1,1,0,1,0,0,x,0,x,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- BUFFER_ONE * 2
+          ,0,0,1,0,0,1,1,0,x,0,x,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1/0,FILLEDTMP <- FILLEDTMP - 1
+          0,GOTO j32n2s1
+          1,GOTO j32n2j1
+   j32n2j1,x,x,x,x,0,1,0,0,x,0,x,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- BUFFER_ONE
+          ,0,0,0,0,0,1,0,1,x,0,x,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- ACCU + BUFFER_TWO
+          ,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,x,BUFFER_TWO <- MDR
+          ,0,0,1,1,x,x,x,x,x,0,x,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- 32
+          ,0,1,1,1,0,0,0,0,x,0,x,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,x,FILLEDTMP <- ACCU - FILLED
+   j32n2s2,x,x,x,x,0,1,0,1,x,0,x,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,x,BUFFER_TWO <- Shiftr BUFFER_TWO
+          ,0,0,1,0,0,1,1,0,x,0,x,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1/0,FILLEDTMP <- FILLEDTMP - 1
+          0,GOTO j32n2s2
+          1,GOTO AfterHead
+   j32n2j3,x,x,x,x,0,0,0,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,1/0,BUFFER_ONE <- MDR
+          1,GOTO AfterHead
+          0,GOTO AfterHead
+      DATA,0,0,1,0,0,0,0,1,0,0,x,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,x,MDR <- MDR + 1
+          ,x,x,x,x,0,1,0,0,x,0,x,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- shiftr BUFFER_ONE
+          ,0,0,1,0,0,1,0,1,x,0,x,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- BUFFER_TWO && 00000001
+          ,0,1,1,0,0,0,0,0,x,0,x,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,x,ACCU <- ACCU * 2^31
+          ,0,0,0,0,0,1,0,0,x,0,x,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,x,BUFFER_ONE <- BUFFER_ONE + ACCU
+          ,x,x,x,x,0,1,0,1,x,0,x,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,x,BUFFER_TWO <- shiftr BUFFER_TWO
+          ,0,0,1,0,0,1,1,1,x,0,x,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1/0,FILLED <- FILLED - 1
+          0,GOTO HeadChk
+          1,GOTO EndCheck
+ AfterHead,1,0,0,1,0,0,1,1,x,0,x,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,x,MAR <- TABELLENANFANG + KANALNR
+          ,x,x,x,x,x,x,x,x,1,1,1,x,x,x,0,0,1,0,0,0,0,0,0,0,0,0,x,MDR <- M[MAR]
+          ,x,x,x,x,0,1,1,1,x,0,x,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1/0,IF FILLED == 0
+          0,GOTO HeadChk
+          1,GOTO EndCheck
+       END,x,x,x,x,x,x,x,x,x,0,x,x,x,x,0,0,0,0,0,0,0,0,0,0,0,0,x,
+        
+ENDE STEUER
+
+START OPCODE
+#Label,Opcode in hex
+
+  START,00
+
+ENDE OPCODE
