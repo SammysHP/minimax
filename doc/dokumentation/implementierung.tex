@@ -209,7 +209,9 @@ Dabei werden die Register \texttt{FILLEDTMP}, und \texttt{ACCU} zur Zwischenspei
 Da die Kanalnummer nur 16 Bit lang ist, dürfen nur diese aus dem \texttt{BUFFER\_ONE} übernommen werden. Das passiert mit folgendem Code:
 
 \begin{verbatim}
-KANALNR <- BUFFER_ONE && 0000ffff
+ACCU <- 2^16
+ACCU <- ACCU - 1
+KANALNR <- BUFFER_ONE && ACCU
 \end{verbatim}
 
 In dem Flussdiagramm impliziert die Speicherung der Kanalnummer auch einen 16 Bit Sprung über die Kanalnummer. Das ist im Algorithmus nicht der Fall. Deswegen wird mit einer Schleife 16-mal geshiftet (auf die gleiche Art wie im Data-Teil).
