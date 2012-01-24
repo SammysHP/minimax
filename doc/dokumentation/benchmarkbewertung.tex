@@ -18,11 +18,11 @@ Für die Berechnung der Laufzeit, der Länge und für die Bewertung des Algorith
 \end{description}
 
 \begin{center}
-    \begin{tabular}{|@{\hspace{2pt}}c@{\hspace{2pt}}||@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|}
+    \begin{tabular}{|@{\hspace{2pt}}c@{\hspace{2pt}}||@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|@{\hspace{2pt}}c@{\hspace{2pt}}|}
         \hline
-        extra ALU"=Op. & SUB1 & INC/DEC & S.L, S.R & AND, OR, NOT & XOR & DIV & Custom \\ 
+        extra ALU"=Op. & SUB1 & INC/DEC & S.L, S.R & AND, OR, NOT & XOR & DIV & MUL & Custom \\ 
         \hline
-        Penalty (1..20) & 1 & 4 & 5 & 6 & 8 & 10 & bis zu 20 \\
+        Penalty (1..20) & 1 & 4 & 5 & 6 & 8 & 10 & 16 & bis zu 20 \\
         \hline
     \end{tabular}
 \end{center}
@@ -38,7 +38,7 @@ Im Folgenden sind die Werte für den verwendeten Algoritmus angegeben:
     const    &= 7 \\ \\
     alu\_add &= MUL + AND + SR.B \\
              &= 16 + 6 + 5 = 27 \\ \\
-    alu\_add &= MUL + AND + SR.B \\
+    alu\_use &= MUL + AND + SR.B \\
              &= 16 + 6 + 5 = 27
 \end{align*}
 
@@ -78,6 +78,24 @@ Nach Simulation des Algorithmus mit allen drei Beispielen wurden folgende Ergebn
     \end{tabular}
 \end{center}
 
+\begin{multicols}{3}
+    Benchmark 1:
+    
+    \includegraphics[width=0.25\textwidth]{dokumentation/res/bench1_result.png}
+    \vfill
+    \columnbreak
+    
+    Benchmark 2:
+    
+    \includegraphics[width=0.25\textwidth]{dokumentation/res/bench2_result.png}
+    \vfill
+    \columnbreak
+    
+    Benchmark 3:
+    
+    \includegraphics[width=0.25\textwidth]{dokumentation/res/bench3_result.png}
+\end{multicols}
+
 \subsection{Länge}
 \label{subsection:Dokumentation-BenchmarkBewertung-Berechnung-Laenge}
 
@@ -86,7 +104,7 @@ Die Länge des Algorithmus berechnet sich nach folgender Formel:
 \begin{align*}
     n_{bewertet} &= n_{Algorithmus} + 5 \cdot reg + 10 \cdot se + 3 \cdot alu\_use + 5 \cdot const \\
                  &= 116 + 5 \cdot 6 + 10 \cdot 0 + 3 \cdot 27 + 5 \cdot 7 \\
-                 &= 118 + 146
+                 &= 118 + 146 \\
                  &= 264
 \end{align*}
 
@@ -103,8 +121,8 @@ Während der Entwicklung nahm die Implementierung für den Simulator die meiste 
 \begin{itemize}
     \item Multiplikation produziert Overflows und schneidet nicht einfach ab
     \item Strings in der GUI sind nicht ausgeschrieben
-    \item Multiplexer A kann nur bis 12 rechnen (trotz theoretischer 4 Bit)
-    \item Multiplexer B kann nur bis 9 rechnen (trotz theoretischer 4 Bit)
+    \item Multiplexer A hat maximal 12 Eingänge (trotz theoretischer 4 Bit)
+    \item Multiplexer B hat maximal 9 Eingänge (trotz theoretischer 4 Bit)
     \item if geht nur mit else
     \item Leitungen lassen sich nicht teilen
     \item Fehlermeldungen (Stacktrace) unbrauchbar, da kein Quelltext vorhanden ist

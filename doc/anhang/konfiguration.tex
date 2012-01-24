@@ -51,8 +51,9 @@
   
   
   START MULTIPLEXER
-  # hier gibt man für die zu ändernden Multiplexer alle Angaben an dabei muß der Name
-  # und die Nummer mit dem entsprechenden Multiplexers der Basismaschine übereinstimmen
+  # hier gibt man für die zu ändernden Multiplexer alle Angaben an
+  # dabei muß der Name und die Nummer mit dem entsprechenden Multiplexers der Basis-
+  # Maschine übereinstimmen
   
     %
     Steuername=ALUSel.A
@@ -130,8 +131,8 @@
     #ENDE MULTIPLEXER
         
     #START ALU
-      ALU,0,0;TABELLENANFANG,0,0;FILLEDTMP,0,0;KANALNR,0,0;FILLED,0,0;
-        BUFFER_ONE,0,0;BUFFER_TWO,0,0;ACCU,0,0;PC,0,0;MDR.Sel,0,0;IR,0,0;MAR,0,0
+      ALU,0,0;TABELLENANFANG,0,0;FILLEDTMP,0,0;KANALNR,0,0;FILLED,0,0;BUFFER_ONE,0,0;
+            BUFFER_TWO,0,0;ACCU,0,0;PC,0,0;MDR.Sel,0,0;IR,0,0;MAR,0,0
       ALU==0,ALU,0;CU,0,0
     #ENDE ALU
 
@@ -145,9 +146,8 @@
       &&,2^31,0;ALUSel.A,0,6
       #e
       &&,14,0;ALUSel.B,0,9
-      &&,65535,0;ALUSel.A,0,11
       &&,16,0;ALUSel.A,0,10
-      &&,2,0;ALUSel.A,0,12
+      &&,2,0;ALUSel.A,0,11
     #ENDE KONSTANTEN
   
   ENDE VERBINDUNGEN
