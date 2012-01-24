@@ -35,7 +35,7 @@ Im Folgenden sind die Werte für den verwendeten Algoritmus angegeben:
 \begin{align*}
     reg      &= 6 \\
     se       &= 0 \\
-    const    &= 8 \\ \\
+    const    &= 7 \\ \\
     alu\_add &= MUL + AND + SR.B \\
              &= 16 + 6 + 5 = 27 \\ \\
     alu\_add &= MUL + AND + SR.B \\
@@ -49,8 +49,8 @@ Die Laufzeit des Algorithmus wird in Minimaxtakten gezählt und berechnet sich n
 
 \begin{align*}
     t_{bewertet} &= t_{bench} \cdot (1 + 0.1 \cdot reg + 0.15 \cdot se + 0.015 \cdot alu\_add + 0.05 \cdot const) \\
-                 &= t_{bench} \cdot (1 + 0.1 \cdot 6 + 0.15 \cdot 0 + 0.015 \cdot 27 + 0.05 \cdot 8) \\
-                 &= t_{bench} \cdot 2.405
+                 &= t_{bench} \cdot (1 + 0.1 \cdot 6 + 0.15 \cdot 0 + 0.015 \cdot 27 + 0.05 \cdot 7) \\
+                 &= t_{bench} \cdot 2.355
 \end{align*}
 
 Zur Bestimmung von $t_{bench}$ wurden 3 Speicherabbilder mit jeweils 1120 Bytes zur Verfügung gestellt:
@@ -64,16 +64,16 @@ Zur Bestimmung von $t_{bench}$ wurden 3 Speicherabbilder mit jeweils 1120 Bytes 
 Nach Simulation des Algorithmus mit allen drei Beispielen wurden folgende Ergebnisse festgestellt:
 
 \begin{center}
-    \begin{tabular}{|l|l|l|}
+    \begin{tabular}{|l|l|r|}
         \hline
-        Speicherabbild & Minimaxtakte & $t_{bewertet}$ \\
+        Speicherabbild & Minimaxtakte & \multicolumn{1}{l|}{$t_{bewertet}$} \\
         \hline
         \hline
-        1 & 24\,711 & 59\ 429.955 \\
+        1 & 24\,935 & 58\,721.925 \\
         \hline
-        2 & 58\,311 & 140\ 237.955 \\
+        2 & 58\,423 & 137\,586.165 \\
         \hline
-        3 & 67\,895 & 163\ 287.475 \\
+        3 & 67\,975 & 160\,081.125 \\
         \hline
     \end{tabular}
 \end{center}
@@ -85,9 +85,9 @@ Die Länge des Algorithmus berechnet sich nach folgender Formel:
 
 \begin{align*}
     n_{bewertet} &= n_{Algorithmus} + 5 \cdot reg + 10 \cdot se + 3 \cdot alu\_use + 5 \cdot const \\
-                 &= 116 + 5 \cdot 6 + 10 \cdot 0 + 3 \cdot 27 + 5 \cdot 8 \\
-                 &= 116 + 151
-                 &= 267
+                 &= 116 + 5 \cdot 6 + 10 \cdot 0 + 3 \cdot 27 + 5 \cdot 7 \\
+                 &= 118 + 146
+                 &= 264
 \end{align*}
 
 \section{Abschließende Bewertung}
