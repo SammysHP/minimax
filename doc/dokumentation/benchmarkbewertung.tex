@@ -38,8 +38,8 @@ Im Folgenden sind die Werte für den verwendeten Algoritmus angegeben:
     const    &= 7 \\ \\
     alu\_add &= MUL + AND + SR.B \\
              &= 16 + 6 + 5 = 27 \\ \\
-    alu\_use &= MUL + AND + SR.B \\
-             &= 16 + 6 + 5 = 27
+    alu\_use &= 4 \cdot MUL + 6 \cdot AND + 14 \cdot SR.B \\
+             &= 4 \cdot 16 + 6 \cdot 6 + 14 \cdot 5 = 170
 \end{align*}
 
 \subsection{Laufzeit}
@@ -103,9 +103,9 @@ Die Länge des Algorithmus berechnet sich nach folgender Formel:
 
 \begin{align*}
     n_{bewertet} &= n_{Algorithmus} + 5 \cdot reg + 10 \cdot se + 3 \cdot alu\_use + 5 \cdot const \\
-                 &= 116 + 5 \cdot 6 + 10 \cdot 0 + 3 \cdot 27 + 5 \cdot 7 \\
-                 &= 118 + 146 \\
-                 &= 264
+                 &= 118 + 5 \cdot 6 + 10 \cdot 0 + 3 \cdot 170 + 5 \cdot 7 \\
+                 &= 118 + 575 \\
+                 &= 693
 \end{align*}
 
 \section{Abschließende Bewertung}
