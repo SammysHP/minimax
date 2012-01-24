@@ -133,7 +133,7 @@ Die Bedingung wird mehrfach überprüft, da der PC an verschiedenen Stellen im C
 
 \textbf{nächsten Speicherblock laden}
 
-Der Speicher wird in den \texttt{BUFFER\_TWO} geladen. Das passiert in den Zeilen: (Sprünge werden gesondert betrachtet) \todo{bla,bla,bla}
+Der Speicher wird in den \texttt{BUFFER\_TWO} geladen. Das passiert in Zeile 20 der RT"=Notation in \autoref{chapter:Anhang-RtNotation}.
 
 \textbf{Erste 4 Bit im Zwischenspeicher == CONST\_SEQ}
 
@@ -200,9 +200,7 @@ Speicher   & \texttt{ccccccccccccbbbbbbbbbbbbbbbbbbbb}\\
 \hline
 \end{tabular}
 
-Dabei werden die Register \texttt{FILLEDTMP}, und \texttt{ACCU} zur Zwischenspeicherung genutzt. Wenn ein "`c-Teil"' (\texttt{FILLED = 0}) nicht vorhanden ist, wird auch nicht geshiftet:
-
-\todo{Verweis auf RT"=Notation}
+Dabei werden die Register \texttt{FILLEDTMP}, und \texttt{ACCU} zur Zwischenspeicherung genutzt. Wenn ein "`c-Teil"' (\texttt{FILLED = 0}) nicht vorhanden ist, wird auch nicht geshiftet. Siehe Zeilen 28-55 und 78-107 der RT"=Notation in \autoref{chapter:Anhang-RtNotation}.
 
 \textbf{KANALNR speichern (16 Bit)}
 

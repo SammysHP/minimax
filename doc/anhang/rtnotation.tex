@@ -1,0 +1,127 @@
+\chapter{RT"=Notation}
+\label{chapter:Anhang-RtNotation}
+
+{\footnotesize\linespread{0.75}\resetlinenumber\linenumbers\begin{verbatim}
+   IFETCH,MDR <- M[MAR]
+          IR <- MDR
+    START,FILLEDTMP <- shiftr AT
+          FILLEDTMP <- shiftr FILLEDTMP
+          FILLEDTMP <- shiftr FILLEDTMP
+          FILLEDTMP <- shiftr FILLEDTMP
+          FILLEDTMP <- shiftr FILLEDTMP
+          TABELLENANFANG <- ACCU + FILLEDTMP
+          TABELLENANFANG <- TABELLENANFANG + 1
+          MAR <- PC <- ACCU
+          MDR <- M[MAR]
+          BUFFER_ONE <- MDR
+ EndCheck,M[MAR] <- MDR
+          PC <- PC + 1
+          IF TABELLENANFANG - PC == 0
+             0,GOTO NextCell
+             1,GOTO END
+ NextCell,MAR <- PC
+          MDR <- M[MAR] || FILLED <- 32
+          BUFFER_TWO <- MDR
+          MAR <- TABELLENANFANG + KANALNR
+          MDR <- M[MAR]
+  HeadChk,ACCU <- 14 + 1
+          ACCU <- BUFFER_ONE && ACCU
+          IF STARTSEQ - ACCU == 0
+             0,GOTO DATA
+             1,GOTO j32n1
+      # JUMP 32BIT
+     j32n,PC <- MAR <- PC + 1
+          MDR <- M[MAR]
+          IF FILLED - 32 == 0
+             0,GOTO j32n1j4
+             1,GOTO j32n1j3
+  j32n1j4,FILLEDTMP <- FILLED
+          BUFFER_ONE <- MDR
+          ACCU <- 2^31
+          ACCU <- ACCU - 1
+   j32n1s,BUFFER_ONE <- BUFFER_ONE && ACCU
+          BUFFER_ONE <- BUFFER_ONE * 2
+          FILLEDTMP <- FILLEDTMP - 1
+             0,GOTO j32n1s1
+             1,GOTO j32n1j1
+   j32n1j,ACCU <- BUFFER_ONE
+          BUFFER_ONE <- ACCU + BUFFER_TWO
+          BUFFER_TWO <- MDR
+          ACCU <- 32
+          FILLEDTMP <- ACCU - FILLED
+             0,GOTO j32n1s2
+             1,GOTO ChSave
+  j32n1s2,BUFFER_TWO <- Shiftr BUFFER_TWO
+          FILLEDTMP <- FILLEDTMP - 1
+             0,GOTO j32n1s2
+             1,GOTO ChSave
+  j32n1j3,BUFFER_ONE <- BUFFER_TWO
+          BUFFER_TWO <- MDR
+       # Save Channel
+   ChSave,ACCU <- 2^16
+          ACCU <- ACCU - 1
+          KANALNR <- BUFFER_ONE && ACCU
+          FILLEDTMP <- 16
+             0,GOTO j16shift
+             1,GOTO j16shift
+       # JUMP 16BIT
+  j16fill,MAR <- PC <- PC + 1
+          MDR <- M[MAR] || FILLED <- 32
+          BUFFER_TWO <- MDR
+ j16shift,BUFFER_ONE <- shiftr BUFFER_ONE
+          ACCU <- BUFFER_TWO && 00000001
+          ACCU <- ACCU * 2^31
+          BUFFER_ONE <- BUFFER_ONE + ACCU
+          BUFFER_TWO <- shiftr BUFFER_TWO
+  16endCk,FILLEDTMP <- FILLEDTMP - 1
+             0,GOTO j16n
+             1,GOTO j32n2
+     j16n,FILLED <- FILLED - 1
+             0,GOTO j16shift
+             1,GOTO j16fill
+      # JUMP 32BIT
+    j32n2,PC <- MAR <- PC + 1
+          IF TABELLENANFANG - PC == 0
+             0,GOTO j32n2n
+             1,GOTO END
+   j32n2n,MDR <- M[MAR]
+          FILLED <- FILLED - 1
+             0,GOTO j32n2j4
+             1,GOTO j32n2j3
+  j32n2j4,FILLEDTMP <- FILLED
+          BUFFER_ONE <- MDR
+          ACCU <- 2^31
+          ACCU <- ACCU - 1
+   j32n2s,BUFFER_ONE <- BUFFER_ONE && ACCU
+          BUFFER_ONE <- BUFFER_ONE * 2
+          FILLEDTMP <- FILLEDTMP - 1
+             0,GOTO j32n2s1
+             1,GOTO j32n2j1
+   j32n2j,ACCU <- BUFFER_ONE
+          BUFFER_ONE <- ACCU + BUFFER_TWO
+          BUFFER_TWO <- MDR
+          ACCU <- 32
+          FILLEDTMP <- ACCU - FILLED
+  j32n2s2,BUFFER_TWO <- Shiftr BUFFER_TWO
+          FILLEDTMP <- FILLEDTMP - 1
+             0,GOTO j32n2s2
+             1,GOTO AfterHead
+  j32n2j3,BUFFER_ONE <- MDR
+             1,GOTO AfterHead
+             0,GOTO AfterHead
+     DATA,MDR <- MDR + 1
+          BUFFER_ONE <- shiftr BUFFER_ONE
+          ACCU <- BUFFER_TWO && 00000001
+          ACCU <- ACCU * 2^31
+          BUFFER_ONE <- BUFFER_ONE + ACCU
+          BUFFER_TWO <- shiftr BUFFER_TWO
+          FILLED <- FILLED - 1
+             0,GOTO HeadChk
+             1,GOTO EndCheck
+AfterHead,MAR <- TABELLENANFANG + KANALNR
+          MDR <- M[MAR]
+          IF FILLED == 0
+            0,GOTO HeadChk
+            1,GOTO EndCheck
+       END
+\end{verbatim}}
