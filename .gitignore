@@ -22,6 +22,7 @@
 /doc/*.bbl
 /doc/*.blg
 /doc/*.synctex.gz
+/beamer/tmp/
 *~
 *.swp
 
